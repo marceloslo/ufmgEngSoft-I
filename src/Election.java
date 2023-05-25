@@ -1,3 +1,4 @@
+package urna;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -28,6 +29,10 @@ public class Election {
   private Map<String, FederalDeputy> federalDeputyCandidates = new HashMap<String, FederalDeputy>();
 
   private Map<Voter, FederalDeputy> tempFDVote = new HashMap<Voter, FederalDeputy>();
+  
+  // #if EstatisticasDinamicas
+  private StatisticsManager dynamicStatistics = new StatisticsManager();
+  // #endif
 
   public static class Builder {
     protected String password;
@@ -56,6 +61,11 @@ public class Election {
     this.nullPresidentVotes = 0;
     this.presidentProtestVotes = 0;
     this.federalDeputyProtestVotes = 0;
+    
+    // #if EstatisticasDinamicas
+    dynamicStatistics.add("President",new VotesStatisticObserver());
+    dynamicStatistics.add("FederalDeputy",new VotesStatisticObserver());
+    // #endif
   }
 
   private Boolean isValid(String password) {
@@ -85,6 +95,9 @@ public class Election {
         tempFDVote.remove(voter);
       }
     }
+    // #if EstatisticasDinamicas
+    this.dynamicStatistics.notify(candidate, "Valid");
+    // #endif
   };
 
   public void computeNullVote(String type, Voter voter) {
@@ -104,6 +117,9 @@ public class Election {
       else
         votersFederalDeputy.put(voter, this.votersFederalDeputy.get(voter) + 1);
     }
+    // #if EstatisticasDinamicas
+    this.dynamicStatistics.notify(type,"Null");
+    // #endif
   }
 
   public void computeProtestVote(String type, Voter voter) {
@@ -123,6 +139,9 @@ public class Election {
       else
         votersFederalDeputy.put(voter, this.votersFederalDeputy.get(voter) + 1);
     }
+    // #if EstatisticasDinamicas
+    this.dynamicStatistics.notify(type,"Blank");
+    // #endif
   }
 
   public boolean getStatus() {
