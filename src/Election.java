@@ -31,7 +31,7 @@ public class Election {
   private Map<Voter, FederalDeputy> tempFDVote = new HashMap<Voter, FederalDeputy>();
   
   // #if EstatisticasDinamicas
-  private StatisticsManager dynamicStatistics = new StatisticsManager();
+//@  private StatisticsManager dynamicStatistics = new StatisticsManager();
   // #endif
 
   public static class Builder {
@@ -63,8 +63,8 @@ public class Election {
     this.federalDeputyProtestVotes = 0;
     
     // #if EstatisticasDinamicas
-    dynamicStatistics.add("President",new VotesStatisticObserver());
-    dynamicStatistics.add("FederalDeputy",new VotesStatisticObserver());
+//@    dynamicStatistics.add("President",new VotesStatisticObserver());
+//@    dynamicStatistics.add("FederalDeputy",new VotesStatisticObserver());
     // #endif
   }
 
@@ -96,7 +96,7 @@ public class Election {
       }
     }
     // #if EstatisticasDinamicas
-    this.dynamicStatistics.notify(candidate, "Valid");
+//@    this.dynamicStatistics.notify(candidate, "Valid");
     // #endif
   };
 
@@ -118,7 +118,7 @@ public class Election {
         votersFederalDeputy.put(voter, this.votersFederalDeputy.get(voter) + 1);
     }
     // #if EstatisticasDinamicas
-    this.dynamicStatistics.notify(type,"Null");
+//@    this.dynamicStatistics.notify(type,"Null");
     // #endif
   }
 
@@ -140,7 +140,7 @@ public class Election {
         votersFederalDeputy.put(voter, this.votersFederalDeputy.get(voter) + 1);
     }
     // #if EstatisticasDinamicas
-    this.dynamicStatistics.notify(type,"Blank");
+//@    this.dynamicStatistics.notify(type,"Blank");
     // #endif
   }
 
