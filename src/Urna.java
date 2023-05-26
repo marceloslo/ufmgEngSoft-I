@@ -1,3 +1,5 @@
+package urna;
+
 import java.util.HashMap;
 import java.util.Scanner;
 import java.util.Map;
@@ -16,7 +18,40 @@ public class Urna {
   private static final Map<String, Voter> VoterMap = new HashMap<>();
 
   private static Election currentElection;
+  
+  private static Urna instance;
 
+  private Urna(String electionPassword) {
+    currentElection = new Election.Builder()
+		        .password(electionPassword)
+		        .build();
+
+    President presidentCandidate1 = new President.Builder().name("João").number(123).party("PDS1").build();
+    currentElection.addPresidentCandidate(presidentCandidate1, electionPassword);
+  
+    President presidentCandidate2 = new President.Builder().name("Maria").number(124).party("ED").build();
+    currentElection.addPresidentCandidate(presidentCandidate2, electionPassword);
+  
+    FederalDeputy federalDeputyCandidate1 = new FederalDeputy.Builder().name("Carlos").number(12345).party("PDS1").state("MG").build();
+    currentElection.addFederalDeputyCandidate(federalDeputyCandidate1, electionPassword);
+  
+    FederalDeputy federalDeputyCandidate2 = new FederalDeputy.Builder().name("Cleber").number(54321).party("PDS2").state("MG").build();
+    currentElection.addFederalDeputyCandidate(federalDeputyCandidate2, electionPassword);
+  
+    FederalDeputy federalDeputyCandidate3 = new FederalDeputy.Builder().name("Sofia").number(11211).party("IHC").state("MG").build();
+    currentElection.addFederalDeputyCandidate(federalDeputyCandidate3, electionPassword);
+    
+    loadVoters();
+    
+    loadTSEProfessionals();
+  }
+  
+  public static Urna getInstance() {
+	  if(instance==null) instance = new Urna("password");
+	  return instance;
+  }
+  
+  
   private static void print(String output) {
     System.out.println(output);
   }
@@ -41,7 +76,7 @@ public class Urna {
     }
   }
 
-  private static void startMenu() {
+  public void startMenu() {
     try {
       while (!exit) {
         print("Escolha uma opção:\n");
@@ -451,6 +486,7 @@ public class Urna {
       }
       myReader.close();
     } catch (Exception e) {
+      System.out.println(e);
       print("Erro na inicialização dos dados");
       exit(1);
     }
@@ -467,11 +503,10 @@ public class Urna {
         .build());
   }
 
-  public static void main(String[] args) {
+  /*public static void main(String[] args) {
 
     // Startup the current election instance
     String electionPassword = "password";
-
     currentElection = new Election.Builder()
         .password(electionPassword)
         .build();
@@ -495,5 +530,5 @@ public class Urna {
     loadTSEProfessionals();
 
     startMenu();
-  }
+  }*/
 }
