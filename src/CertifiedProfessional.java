@@ -1,3 +1,4 @@
+package urna;
 // Gerencia o processo eleitoral
 public class CertifiedProfessional extends TSEProfessional {
   public void startSession(Election election, String password) {

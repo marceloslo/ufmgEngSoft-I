@@ -262,6 +262,10 @@ public class Urna {
       if (votePresident(voter))
         print("Voto para presidente registrado com sucesso");
       print("\n=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=\n\n");
+      
+      // #if SegundoTurno
+//@      if(currentElection.segundoTurno) return;
+      // #endif
 
       if (voteFederalDeputy(voter, 1))
         print("Primeiro voto para deputado federal registrado com sucesso");
@@ -279,6 +283,7 @@ public class Urna {
       print("Erro inesperado");
     }
   }
+  
 
   private static TSEProfessional getTSEProfessional() {
     print("Insira seu usuário:");
@@ -497,6 +502,12 @@ public class Urna {
         .user("cert")
         .password("54321")
         .build());
+    
+    TSEMap.put("a", new CertifiedProfessional.Builder()
+            .user("a")
+            .password("1")
+            .build());
+    
     TSEMap.put("emp", new TSEEmployee.Builder()
         .user("emp")
         .password("12345")

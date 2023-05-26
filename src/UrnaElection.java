@@ -6,7 +6,6 @@ public class UrnaElection {
 		Urna urnaEletronica = Urna.getInstance();
 
 	    urnaEletronica.startMenu();
-
 	}
 
 }

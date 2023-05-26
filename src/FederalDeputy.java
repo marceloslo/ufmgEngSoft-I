@@ -1,3 +1,4 @@
+package urna;
 import java.util.Set;
 
 public class FederalDeputy extends Candidate {

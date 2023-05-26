@@ -5,7 +5,7 @@
 	<feature automatic="selected" name="Exibicao"/>
 	<feature automatic="selected" name="ExibirEleitos"/>
 	<feature automatic="selected" name="ExibirVotosNominais"/>
-	<feature manual="selected" name="ExibirDerrotados"/>
+	<feature name="ExibirDerrotados"/>
 	<feature manual="selected" name="EstatisticasDinamicas"/>
-	<feature manual="selected" name="SegundoTurno"/>
+	<feature name="SegundoTurno"/>
 </configuration>

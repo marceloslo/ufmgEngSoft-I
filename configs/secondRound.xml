@@ -7,4 +7,5 @@
 	<feature automatic="selected" name="ExibirVotosNominais"/>
 	<feature name="ExibirDerrotados"/>
 	<feature name="EstatisticasDinamicas"/>
+	<feature manual="selected" name="SegundoTurno"/>
 </configuration>

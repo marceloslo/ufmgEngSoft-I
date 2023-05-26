@@ -1,3 +1,4 @@
+package urna;
  
 
 public class StopTrap extends Error {
