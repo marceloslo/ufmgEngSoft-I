@@ -19,12 +19,9 @@ public class Urna {
 
   private static Election currentElection;
   
-  private static Urna instance;
 
-  private Urna(String electionPassword) {
-    currentElection = new Election.Builder()
-		        .password(electionPassword)
-		        .build();
+  public Urna(String electionPassword) {
+    currentElection = Election.getInstance(electionPassword);
 
     President presidentCandidate1 = new President.Builder().name("João").number(123).party("PDS1").build();
     currentElection.addPresidentCandidate(presidentCandidate1, electionPassword);
@@ -44,11 +41,6 @@ public class Urna {
     loadVoters();
     
     loadTSEProfessionals();
-  }
-  
-  public static Urna getInstance() {
-	  if(instance==null) instance = new Urna("password");
-	  return instance;
   }
   
   
@@ -264,7 +256,7 @@ public class Urna {
       print("\n=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=\n\n");
       
       // #if SegundoTurno
-//@      if(currentElection.segundoTurno) return;
+      if(currentElection.segundoTurno) return;
       // #endif
 
       if (voteFederalDeputy(voter, 1))
