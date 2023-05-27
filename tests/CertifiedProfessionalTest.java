@@ -1,10 +1,11 @@
 import static org.junit.Assert.*;
 import org.junit.Test;
 
-import CertifiedProfessional;
-import Election;
-import President;
-import FederalDeputy;
+import urna.CertifiedProfessional;
+import urna.Election;
+import urna.President;
+import urna.FederalDeputy;
+import urna.Voter;
 
 public class CertifiedProfessionalTest {
   @Test
@@ -30,9 +31,7 @@ public class CertifiedProfessionalTest {
       .build();
 
     String electionPassword = "123";
-    Election election = new Election.Builder()
-      .password(electionPassword)
-      .build();    
+    Election election = Election.getInstance(electionPassword);
 
     certifiedProfessional.startSession(election, electionPassword);
 
@@ -49,9 +48,7 @@ public class CertifiedProfessionalTest {
       .build();
 
     String electionPassword = "123";
-    Election election = new Election.Builder()
-      .password(electionPassword)
-      .build();    
+    Election election = Election.getInstance(electionPassword);
 
     Exception exception = assertThrows(RuntimeException.class, () -> {
       certifiedProfessional.startSession(election, "12");
@@ -73,9 +70,7 @@ public class CertifiedProfessionalTest {
       .build();
 
     String electionPassword = "123";
-    Election election = new Election.Builder()
-      .password(electionPassword)
-      .build();    
+    Election election = Election.getInstance(electionPassword);
 
     certifiedProfessional.startSession(election, electionPassword);
     certifiedProfessional.endSession(election, electionPassword);
@@ -93,9 +88,7 @@ public class CertifiedProfessionalTest {
       .build();
 
     String electionPassword = "123";
-    Election election = new Election.Builder()
-      .password(electionPassword)
-      .build();    
+    Election election = Election.getInstance(electionPassword);
 
     certifiedProfessional.startSession(election, electionPassword);
     Exception exception = assertThrows(RuntimeException.class, () -> {
@@ -113,9 +106,7 @@ public class CertifiedProfessionalTest {
     
     String electionPassword = "password";
 
-    currentElection = new Election.Builder()
-      .password(electionPassword)
-      .build();
+    Election currentElection = Election.getInstance(electionPassword);
 
 
     Voter v1 = new Voter.Builder().name("v1").electoralCard("123456789012").state("MG").build();

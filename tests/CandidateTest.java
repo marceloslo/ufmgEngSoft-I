@@ -1,9 +1,10 @@
 import static org.junit.Assert.*;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
-import Candidate;
+import urna.Candidate;
 
 public class CandidateTest {
+  
   @Test
   public void testCandidateConstructor(){
     String name = "Alberto";

@@ -1,7 +1,7 @@
 import static org.junit.Assert.*;
 import org.junit.Test;
 
-import TSEProfessional;
+import urna.TSEProfessional;
 
 public class TSEProfessionalTest {
   @Test

@@ -1,7 +1,7 @@
 import static org.junit.Assert.*;
 import org.junit.Test;
 
-import Voter;
+import urna.Voter;
 
 public class VoterTest {
   @Test

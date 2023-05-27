@@ -1,9 +1,9 @@
 import static org.junit.Assert.*;
 import org.junit.Test;
 
-import TSEEmployee;
-import President;
-import FederalDeputy;
+import urna.TSEEmployee;
+import urna.President;
+import urna.FederalDeputy;
 
 public class TSEEmployeeTest {
   @Test

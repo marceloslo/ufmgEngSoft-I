@@ -1,7 +1,7 @@
 import static org.junit.Assert.*;
 import org.junit.Test;
 
-import scratch.FederalDeputy;
+import urna.FederalDeputy;
 
 public class FederalDeputyTest {
   @Test
