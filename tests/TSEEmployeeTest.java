@@ -3,6 +3,7 @@ import org.junit.Test;
 
 import urna.TSEEmployee;
 import urna.President;
+import urna.Election;
 import urna.FederalDeputy;
 
 public class TSEEmployeeTest {
@@ -31,12 +32,10 @@ public class TSEEmployeeTest {
     
     String electionPassword = "password";
 
-    currentElection = new Election.Builder()
-      .password(electionPassword)
-      .build();
+    Election currentElection = Election.getInstance(electionPassword);
 
     President presidentCandidate1 = new President.Builder().name("João").number(123).party("PDS1").build();
-    FederalDeputy federalDeputyCandidate1 = new FederalDeputy.Builder().name("Carlos").number(12345).party("PDS1");
+    FederalDeputy federalDeputyCandidate1 = new FederalDeputy.Builder().name("Carlos").number(12345).party("PDS1").build();
     
     tseEmployee.addCandidate(presidentCandidate1, currentElection, electionPassword);
     tseEmployee.addCandidate(federalDeputyCandidate1, currentElection, electionPassword);
@@ -57,12 +56,10 @@ public class TSEEmployeeTest {
     
     String electionPassword = "password";
 
-    currentElection = new Election.Builder()
-      .password(electionPassword)
-      .build();
+    Election currentElection = Election.getInstance(electionPassword);
 
     President presidentCandidate1 = new President.Builder().name("João").number(123).party("PDS1").build();
-    FederalDeputy federalDeputyCandidate1 = new FederalDeputy.Builder().name("Carlos").number(12345).party("PDS1");
+    FederalDeputy federalDeputyCandidate1 = new FederalDeputy.Builder().name("Carlos").number(12345).party("PDS1").build();
     
     tseEmployee.addCandidate(presidentCandidate1, currentElection, electionPassword);
     tseEmployee.addCandidate(federalDeputyCandidate1, currentElection, electionPassword);
