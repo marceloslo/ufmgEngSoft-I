@@ -1,46 +1,17 @@
 package urna;
 
-import java.util.HashMap;
-import java.util.Scanner;
-import java.util.Map;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
-import java.io.File;
-import static java.lang.System.exit;
 
 public class Urna {
   private static final BufferedReader scanner = new BufferedReader(new InputStreamReader(System.in));
 
   private static boolean exit = false;
-
-  private static final Map<String, TSEProfessional> TSEMap = new HashMap<>();
-
-  private static final Map<String, Voter> VoterMap = new HashMap<>();
-
-  private static Election currentElection;
   
-
+  private static UrnaBackend urnaModel;
+  
   public Urna(String electionPassword) {
-    currentElection = Election.getInstance(electionPassword);
-
-    President presidentCandidate1 = new President.Builder().name("João").number(123).party("PDS1").build();
-    currentElection.addPresidentCandidate(presidentCandidate1, electionPassword);
-  
-    President presidentCandidate2 = new President.Builder().name("Maria").number(124).party("ED").build();
-    currentElection.addPresidentCandidate(presidentCandidate2, electionPassword);
-  
-    FederalDeputy federalDeputyCandidate1 = new FederalDeputy.Builder().name("Carlos").number(12345).party("PDS1").state("MG").build();
-    currentElection.addFederalDeputyCandidate(federalDeputyCandidate1, electionPassword);
-  
-    FederalDeputy federalDeputyCandidate2 = new FederalDeputy.Builder().name("Cleber").number(54321).party("PDS2").state("MG").build();
-    currentElection.addFederalDeputyCandidate(federalDeputyCandidate2, electionPassword);
-  
-    FederalDeputy federalDeputyCandidate3 = new FederalDeputy.Builder().name("Sofia").number(11211).party("IHC").state("MG").build();
-    currentElection.addFederalDeputyCandidate(federalDeputyCandidate3, electionPassword);
-    
-    loadVoters();
-    
-    loadTSEProfessionals();
+	urnaModel = new UrnaBackend(electionPassword);
   }
   
   
@@ -92,7 +63,7 @@ public class Urna {
   private static Voter getVoter() {
     print("Insira seu título de eleitor:");
     String electoralCard = readString();
-    Voter voter = VoterMap.get(electoralCard);
+    Voter voter = urnaModel.getVoter(electoralCard);//VoterMap.get(electoralCard);
     if (voter == null) {
       print("Eleitor não encontrado, por favor confirme se a entrada está correta e tente novamente");
     } else {
@@ -123,7 +94,8 @@ public class Urna {
       print("(1) Confirmar\n(2) Mudar voto");
       int confirm = readInt();
       if (confirm == 1) {
-        voter.vote(0, currentElection, "President", true);
+    	urnaModel.protestVote(voter, "President");
+        //voter.vote(0, currentElection, "President", true);
         return true;
       } else
         votePresident(voter);
@@ -136,14 +108,15 @@ public class Urna {
           print("(1) Confirmar\n(2) Mudar voto");
           int confirm = readInt();
           if (confirm == 1) {
-            voter.vote(0, currentElection, "President", false);
+        	urnaModel.vote(voter, voteNumber, "President");
+            //voter.vote(0, currentElection, "President", false);
             return true;
           } else
             votePresident(voter);
         }
 
         // Normal
-        President candidate = currentElection.getPresidentByNumber(voteNumber);
+        President candidate = urnaModel.getPresidentByNumber(voteNumber);//currentElection.getPresidentByNumber(voteNumber);
         if (candidate == null) {
           print("Nenhum candidato encontrado com este número, tente novamente");
           print("\n=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=\n\n");
@@ -153,7 +126,8 @@ public class Urna {
         print("(1) Confirmar\n(2) Mudar voto");
         int confirm = readInt();
         if (confirm == 1) {
-          voter.vote(voteNumber, currentElection, "President", false);
+          urnaModel.vote(voter, voteNumber, "President");
+          //voter.vote(voteNumber, currentElection, "President", false);
           return true;
         } else if (confirm == 2)
           return votePresident(voter);
@@ -184,7 +158,8 @@ public class Urna {
       print("(1) Confirmar\n(2) Mudar voto");
       int confirm = readInt();
       if (confirm == 1) {
-        voter.vote(0, currentElection, "FederalDeputy", true);
+    	urnaModel.protestVote(voter, "FederalDeputy");
+        //voter.vote(0, currentElection, "FederalDeputy", true);
         return true;
       } else
         return voteFederalDeputy(voter, counter);
@@ -197,14 +172,15 @@ public class Urna {
           print("(1) Confirmar\n(2) Mudar voto\n");
           int confirm = readInt();
           if (confirm == 1) {
-            voter.vote(0, currentElection, "FederalDeputy", false);
+        	urnaModel.vote(voter, voteNumber, "FederalDeputy");
+            //voter.vote(0, currentElection, "FederalDeputy", false);
             return true;
           } else
             return voteFederalDeputy(voter, counter);
         }
 
         // Normal
-        FederalDeputy candidate = currentElection.getFederalDeputyByNumber(voter.state, voteNumber);
+        FederalDeputy candidate = urnaModel.getFederalDeputyByNumber(voter.state, voteNumber);//currentElection.getFederalDeputyByNumber(voter.state, voteNumber);
         if (candidate == null) {
           print("Nenhum candidato encontrado com este número, tente novamente");
           print("\n=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=\n\n");
@@ -214,7 +190,8 @@ public class Urna {
         print("(1) Confirmar\n(2) Mudar voto");
         int confirm = readInt();
         if (confirm == 1) {
-          voter.vote(voteNumber, currentElection, "FederalDeputy", false);
+          urnaModel.vote(voter, voteNumber, "FederalDeputy");
+          //voter.vote(voteNumber, currentElection, "FederalDeputy", false);
           return true;
         } else if (confirm == 2)
           return voteFederalDeputy(voter, counter);
@@ -236,7 +213,7 @@ public class Urna {
   private static void voterMenu() {
     try {
       print("\n=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=\n\n");
-      if (!currentElection.getStatus()) {
+      if (!urnaModel.getElectionStatus()) {
         print("A eleição ainda não foi inicializada, verifique com um funcionário do TSE");
         return;
       }
@@ -256,7 +233,7 @@ public class Urna {
       print("\n=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=\n\n");
       
       // #if SegundoTurno
-      if(currentElection.segundoTurno) return;
+//@      if(currentElection.segundoTurno) return;
       // #endif
 
       if (voteFederalDeputy(voter, 1))
@@ -280,7 +257,7 @@ public class Urna {
   private static TSEProfessional getTSEProfessional() {
     print("Insira seu usuário:");
     String user = readString();
-    TSEProfessional tseProfessional = TSEMap.get(user);
+    TSEProfessional tseProfessional = urnaModel.getTseProfessional(user);//TSEMap.get(user);
     if (tseProfessional == null) {
       print("Funcionário do TSE não encontrado, por favor confirme se a entrada está correta e tente novamente");
     } else {
@@ -342,7 +319,7 @@ public class Urna {
     if (save == 1 && candidate != null) {
       print("Insira a senha da urna");
       String pwd = readString();
-      tseProfessional.addCandidate(candidate, currentElection, pwd);
+      urnaModel.addCandidate(tseProfessional,candidate,pwd);//tseProfessional.addCandidate(candidate, currentElection, pwd);
       print("Candidato cadastrado com sucesso");
     }
   }
@@ -366,7 +343,7 @@ public class Urna {
       print("Qual o estado do candidato?");
       String state = readString();
 
-      candidate = currentElection.getFederalDeputyByNumber(state, number);
+      candidate = urnaModel.getFederalDeputyByNumber(state, number);//currentElection.getFederalDeputyByNumber(state, number);
       if (candidate == null) {
         print("Candidato não encontrado");
         return;
@@ -375,7 +352,7 @@ public class Urna {
           + candidate.party + "("
           + ((FederalDeputy) candidate).state + ")?");
     } else if (candidateType == 1) {
-      candidate = currentElection.getPresidentByNumber(number);
+      candidate = urnaModel.getPresidentByNumber(number);//currentElection.getPresidentByNumber(number);
       if (candidate == null) {
         print("Candidato não encontrado");
         return;
@@ -389,7 +366,7 @@ public class Urna {
     if (remove == 1) {
       print("Insira a senha da urna:");
       String pwd = readString();
-      tseProfessional.removeCandidate(candidate, currentElection, pwd);
+      urnaModel.removeCandidate(tseProfessional,candidate,pwd);//tseProfessional.removeCandidate(candidate, currentElection, pwd);
       print("Candidato removido com sucesso");
     }
   }
@@ -398,7 +375,7 @@ public class Urna {
     try {
       print("Insira a senha da urna");
       String pwd = readString();
-      tseProfessional.startSession(currentElection, pwd);
+      urnaModel.startSession(tseProfessional,pwd);//tseProfessional.startSession(currentElection, pwd);
       print("Sessão inicializada");
       print("\n=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=\n\n");
     } catch (Warning e) {
@@ -410,7 +387,7 @@ public class Urna {
     try {
       print("Insira a senha da urna:");
       String pwd = readString();
-      tseProfessional.endSession(currentElection, pwd);
+      urnaModel.endSession(tseProfessional, pwd);//tseProfessional.endSession(currentElection, pwd);
       print("Sessão finalizada com sucesso");
       print("\n=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=\n\n");
     } catch (Warning e) {
@@ -422,7 +399,7 @@ public class Urna {
     try {
       print("Insira a senha da urna");
       String pwd = readString();
-      print(tseProfessional.getFinalResult(currentElection, pwd));
+      print(urnaModel.getFinalResult(tseProfessional,pwd)); //tseProfessional.getFinalResult(currentElection, pwd)
       print("\n=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=\n\n");
     } catch (Warning e) {
       print(e.getMessage());
@@ -470,68 +447,4 @@ public class Urna {
       print("Ocorreu um erro inesperado");
     }
   }
-
-  private static void loadVoters() {
-    try {
-      File myObj = new File("voterLoad.txt");
-      Scanner myReader = new Scanner(myObj);
-      while (myReader.hasNextLine()) {
-        String data = myReader.nextLine();
-        var voterData = data.split(",");
-        VoterMap.put(voterData[0],
-            new Voter.Builder().electoralCard(voterData[0]).name(voterData[1]).state(voterData[2]).build());
-      }
-      myReader.close();
-    } catch (Exception e) {
-      System.out.println(e);
-      print("Erro na inicialização dos dados");
-      exit(1);
-    }
-  }
-
-  private static void loadTSEProfessionals() {
-    TSEMap.put("cert", new CertifiedProfessional.Builder()
-        .user("cert")
-        .password("54321")
-        .build());
-    
-    TSEMap.put("a", new CertifiedProfessional.Builder()
-            .user("a")
-            .password("1")
-            .build());
-    
-    TSEMap.put("emp", new TSEEmployee.Builder()
-        .user("emp")
-        .password("12345")
-        .build());
-  }
-
-  /*public static void main(String[] args) {
-
-    // Startup the current election instance
-    String electionPassword = "password";
-    currentElection = new Election.Builder()
-        .password(electionPassword)
-        .build();
-
-    President presidentCandidate1 = new President.Builder().name("João").number(123).party("PDS1").build();
-    currentElection.addPresidentCandidate(presidentCandidate1, electionPassword);
-    President presidentCandidate2 = new President.Builder().name("Maria").number(124).party("ED").build();
-    currentElection.addPresidentCandidate(presidentCandidate2, electionPassword);
-    FederalDeputy federalDeputyCandidate1 = new FederalDeputy.Builder().name("Carlos").number(12345).party("PDS1")
-        .state("MG").build();
-    currentElection.addFederalDeputyCandidate(federalDeputyCandidate1, electionPassword);
-    FederalDeputy federalDeputyCandidate2 = new FederalDeputy.Builder().name("Cleber").number(54321).party("PDS2")
-        .state("MG").build();
-    currentElection.addFederalDeputyCandidate(federalDeputyCandidate2, electionPassword);
-    FederalDeputy federalDeputyCandidate3 = new FederalDeputy.Builder().name("Sofia").number(11211).party("IHC")
-        .state("MG").build();
-    currentElection.addFederalDeputyCandidate(federalDeputyCandidate3, electionPassword);
-
-    // Startar todo os eleitores e profissionais do TSE
-    loadVoters();
-    loadTSEProfessionals();
-
-    startMenu();
-  }*/
 }

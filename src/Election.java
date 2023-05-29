@@ -35,7 +35,7 @@ public class Election {
   
   // Segundo turno afeta a função finish, cria a função setupSecondRound e afeta a função voterMenu da classe Urna
   // #if SegundoTurno
-  protected boolean segundoTurno = false;
+//@  protected boolean segundoTurno = false;
   // #endif
   
   // Estatisticas dinamicas afeta o construtor, as 3 funcoes que computam voto e o setup de segundo turno
@@ -174,66 +174,66 @@ public class Election {
       throw new Warning("Senha inválida");
     
     // #if SegundoTurno
-    // calculate conditions for second round
-    int totalVotesP = 0;
-    int maxVotes=0;
-    for (Map.Entry<Integer, President> candidateEntry : presidentCandidates.entrySet()) {
-      President candidate = candidateEntry.getValue();
-      totalVotesP += candidate.numVotes;
-      if(candidate.numVotes >= maxVotes) {
-    	  maxVotes=candidate.numVotes;
-      }
-    }
-    
-    // check if a candidate had more than 50% of votes
-    if (!this.segundoTurno && ((double)maxVotes/(double)totalVotesP) <= 0.5) {
-    	this.setupSecondRound();
-    	return;
-    }
+//@    // calculate conditions for second round
+//@    int totalVotesP = 0;
+//@    int maxVotes=0;
+//@    for (Map.Entry<Integer, President> candidateEntry : presidentCandidates.entrySet()) {
+//@      President candidate = candidateEntry.getValue();
+//@      totalVotesP += candidate.numVotes;
+//@      if(candidate.numVotes >= maxVotes) {
+//@    	  maxVotes=candidate.numVotes;
+//@      }
+//@    }
+//@    
+//@    // check if a candidate had more than 50% of votes
+//@    if (!this.segundoTurno && ((double)maxVotes/(double)totalVotesP) <= 0.5) {
+//@    	this.setupSecondRound();
+//@    	return;
+//@    }
     // #endif
 
     this.status = false;
   }
   
   // #if SegundoTurno
-  private void setupSecondRound() {
-	    
-	  President p1 = null;
-	  President p2 = null;
-	  for (Map.Entry<Integer, President> candidateEntry : presidentCandidates.entrySet()) {
-	       President candidate = candidateEntry.getValue();
-	       if(p1==null || candidate.numVotes > p1.numVotes) {
-	    	   p2 = p1;
-	    	   p1 = candidate;
-	       } else if (p2==null || candidate.numVotes > p2.numVotes) {
-	    	   p2=candidate;
-	       }
-	  }
-	  //reset attributes
-	  this.segundoTurno=true;
-	  this.nullPresidentVotes = 0;
-	  this.presidentProtestVotes = 0;
-	  this.presidentCandidates = new HashMap<Integer, President>();
-	  this.votersPresident = new HashMap<Voter, Integer>();
-	  p1 = new President.Builder().name(p1.name).number(p1.number).party(p1.party).build();
-	  p2 = new President.Builder().name(p2.name).number(p2.number).party(p2.party).build();
-	  
+//@  private void setupSecondRound() {
+//@	    
+//@	  President p1 = null;
+//@	  President p2 = null;
+//@	  for (Map.Entry<Integer, President> candidateEntry : presidentCandidates.entrySet()) {
+//@	       President candidate = candidateEntry.getValue();
+//@	       if(p1==null || candidate.numVotes > p1.numVotes) {
+//@	    	   p2 = p1;
+//@	    	   p1 = candidate;
+//@	       } else if (p2==null || candidate.numVotes > p2.numVotes) {
+//@	    	   p2=candidate;
+//@	       }
+//@	  }
+//@	  //reset attributes
+//@	  this.segundoTurno=true;
+//@	  this.nullPresidentVotes = 0;
+//@	  this.presidentProtestVotes = 0;
+//@	  this.presidentCandidates = new HashMap<Integer, President>();
+//@	  this.votersPresident = new HashMap<Voter, Integer>();
+//@	  p1 = new President.Builder().name(p1.name).number(p1.number).party(p1.party).build();
+//@	  p2 = new President.Builder().name(p2.name).number(p2.number).party(p2.party).build();
+//@	  
 	  //#if EstatisticasDinamicas
-	  dynamicStatistics.remove("President");
-	  dynamicStatistics.add("President",new VotesStatisticsObserver());
+//@	  dynamicStatistics.remove("President");
+//@	  dynamicStatistics.add("President",new VotesStatisticsObserver());
 	  //#endif
-	  
-	  //add presidential candidates for second round
-	  this.presidentCandidates.put(p1.number,p1);
-	  this.presidentCandidates.put(p2.number,p2);
-	  
-	  
-	  System.out.println("Nenhum candidato conseguiu mais de 50% dos votos validos, comecando segundo turno, favor iniciar nova sessão.");
-	  System.out.println("Candidatos:");
-	  System.out.println("\t"+p1.name+" - Numero: "+String.valueOf(p1.number)+" - Partido: "+p1.party);
-	  System.out.println("\t"+p2.name+" - Numero: "+String.valueOf(p2.number)+" - Partido: "+p2.party);
-	  
-  }
+//@	  
+//@	  //add presidential candidates for second round
+//@	  this.presidentCandidates.put(p1.number,p1);
+//@	  this.presidentCandidates.put(p2.number,p2);
+//@	  
+//@	  
+//@	  System.out.println("Nenhum candidato conseguiu mais de 50% dos votos validos, comecando segundo turno, favor iniciar nova sessão.");
+//@	  System.out.println("Candidatos:");
+//@	  System.out.println("\t"+p1.name+" - Numero: "+String.valueOf(p1.number)+" - Partido: "+p1.party);
+//@	  System.out.println("\t"+p2.name+" - Numero: "+String.valueOf(p2.number)+" - Partido: "+p2.party);
+//@	  
+//@  }
   // #endif
   
 
