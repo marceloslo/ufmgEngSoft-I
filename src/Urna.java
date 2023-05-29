@@ -233,7 +233,7 @@ public class Urna {
       print("\n=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=\n\n");
       
       // #if SegundoTurno
-//@      if(currentElection.segundoTurno) return;
+      if(urnaModel.isSecondRound()) return;
       // #endif
 
       if (voteFederalDeputy(voter, 1))

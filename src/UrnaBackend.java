@@ -74,6 +74,10 @@ public class UrnaBackend {
   public String getFinalResult(CertifiedProfessional tseProfessional, String pwd) {
     return tseProfessional.getFinalResult(currentElection, pwd);
   }
+  
+  public Boolean isSecondRound() {
+	  return currentElection.segundoTurno;
+  }
 
 
 }

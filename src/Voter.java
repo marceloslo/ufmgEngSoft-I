@@ -79,4 +79,16 @@ public class Voter {
         election.computeVote(candidate, this);
       }
   }
+
+  public String getElectoralCard() {
+	return electoralCard;
+  }
+
+  public String getName() {
+	return name;
+  }
+
+  public String getState() {
+ 	return state;
+  }
 }

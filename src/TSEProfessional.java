@@ -10,4 +10,8 @@ public class TSEProfessional {
     this.user = user;
     this.password = password;
   }
+
+  public String getUser() {
+	return user;
+  }
 }
