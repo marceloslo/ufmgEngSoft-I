@@ -19,11 +19,11 @@ public class UrnaBackend {
   }
 	
   
-  public void vote(Voter voter,int voteNumber,String role) {
+  public void vote(int voteNumber,String role) {
 	  voter.vote(voteNumber, currentElection, role, false);
   }
   
-  public void protestVote(Voter voter,String role) {
+  public void protestVote(String role) {
 	  voter.vote(0, currentElection, role, true);
   }
   

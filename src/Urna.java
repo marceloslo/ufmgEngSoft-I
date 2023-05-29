@@ -94,7 +94,7 @@ public class Urna {
       print("(1) Confirmar\n(2) Mudar voto");
       int confirm = readInt();
       if (confirm == 1) {
-    	urnaModel.protestVote(voter, "President");
+    	urnaModel.protestVote( "President");
         //voter.vote(0, currentElection, "President", true);
         return true;
       } else
@@ -108,7 +108,7 @@ public class Urna {
           print("(1) Confirmar\n(2) Mudar voto");
           int confirm = readInt();
           if (confirm == 1) {
-        	urnaModel.vote(voter, voteNumber, "President");
+        	urnaModel.vote( voteNumber, "President");
             //voter.vote(0, currentElection, "President", false);
             return true;
           } else
@@ -126,7 +126,7 @@ public class Urna {
         print("(1) Confirmar\n(2) Mudar voto");
         int confirm = readInt();
         if (confirm == 1) {
-          urnaModel.vote(voter, voteNumber, "President");
+          urnaModel.vote(voteNumber, "President");
           //voter.vote(voteNumber, currentElection, "President", false);
           return true;
         } else if (confirm == 2)
@@ -158,7 +158,7 @@ public class Urna {
       print("(1) Confirmar\n(2) Mudar voto");
       int confirm = readInt();
       if (confirm == 1) {
-    	urnaModel.protestVote(voter, "FederalDeputy");
+    	urnaModel.protestVote("FederalDeputy");
         //voter.vote(0, currentElection, "FederalDeputy", true);
         return true;
       } else
@@ -172,7 +172,7 @@ public class Urna {
           print("(1) Confirmar\n(2) Mudar voto\n");
           int confirm = readInt();
           if (confirm == 1) {
-        	urnaModel.vote(voter, voteNumber, "FederalDeputy");
+        	urnaModel.vote(voteNumber, "FederalDeputy");
             //voter.vote(0, currentElection, "FederalDeputy", false);
             return true;
           } else
@@ -190,7 +190,7 @@ public class Urna {
         print("(1) Confirmar\n(2) Mudar voto");
         int confirm = readInt();
         if (confirm == 1) {
-          urnaModel.vote(voter, voteNumber, "FederalDeputy");
+          urnaModel.vote( voteNumber, "FederalDeputy");
           //voter.vote(voteNumber, currentElection, "FederalDeputy", false);
           return true;
         } else if (confirm == 2)
