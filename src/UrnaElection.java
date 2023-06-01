@@ -10,32 +10,6 @@ public class UrnaElection {
 
 	public static void main(String[] args) {
 		Urna urnaEletronica = null;
-		/*
-		int type_of_voting_machine = 0;
-		while(true){
-			printInterface.printTypeOfVotingMachine();
-
-			type_of_voting_machine = readInput();
-			if(type_of_voting_machine > 0 && type_of_voting_machine < 5){
-				break;
-			}else{
-				printInterface.printInvalidVotingMachine();
-			}
-		}
-
-		if (type_of_voting_machine == 1){
-			urnaEletronica = new UrnaFederal("password");
-		}
-		else if (type_of_voting_machine == 2){
-			urnaEletronica = new UrnaDistrital("password");
-		}
-		else if(type_of_voting_machine == 3){
-			urnaEletronica = new UrnaTvShow("password");
-		}
-		else if(type_of_voting_machine == 4){
-			// to do 
-		}
-		 */
 		// #if Federal
 		urnaEletronica = new UrnaFederal("password");
 		// #endif
