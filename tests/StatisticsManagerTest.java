@@ -45,7 +45,7 @@ class StatisticsManagerTest {
 		m.notify("Candidate", "Null");
 		assertTrue(outContent.toString().contains("Votos nulos: 1"));
 		
-		m.notify(c,"Valid");
+		m.notify("Candidate","Valid",c);
 		assertTrue(outContent.toString().contains("10 - pdt - Osvaldo - 1 - 50,00%"));
 	}
 	

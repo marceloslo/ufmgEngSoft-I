@@ -5,14 +5,15 @@ import org.junit.jupiter.api.BeforeEach;
 
 import urna.TSEEmployee;
 import urna.President;
-import urna.Election;
+import urna.MultipleElections;
+import urna.PoliticalElection;
 import urna.FederalDeputy;
 
 public class TSEEmployeeTest {
   TSEEmployee tseEmployee;
   String user;
   String password;
-  Election currentElection;
+  MultipleElections currentElection;
   
   @BeforeEach
   public void setUp() {
@@ -22,7 +23,8 @@ public class TSEEmployeeTest {
 			.user(user)
 		    .password(password)
 		    .build();
-	Election.reset();
+	currentElection = MultipleElections.getInstance();
+	currentElection.addElection("Presidente", new PoliticalElection(password));
   }
   
   @Test

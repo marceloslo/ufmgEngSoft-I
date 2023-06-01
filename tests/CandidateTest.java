@@ -11,7 +11,7 @@ public class CandidateTest {
     String party = "PV";
     int number = 1232;
 
-		Candidate candidate = new Candidate(name, party, number);
+    Candidate candidate = new Candidate(name, party, number);
 
     assertTrue("O nome do candidato nao esta como definido pelo construtor.", candidate.getName().equals(name));
     assertTrue("O partido do candidato nao esta como definido pelo construtor.", candidate.getParty().equals(party));

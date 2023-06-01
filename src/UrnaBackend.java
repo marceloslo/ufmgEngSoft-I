@@ -130,15 +130,15 @@ public class UrnaBackend {
   }
   
   // #if SegundoTurno
-  public List<String> electionsWithNoSecondRound() {
-	  List<String> noSecondRound = new ArrayList<>();
-	  for(var entry : currentElection.secondRounds.entrySet()) {
-		  if(entry.getValue() == false) {
-			  noSecondRound.add(entry.getKey());
-		  }
-	  }
-	  return noSecondRound;
-  }
+//@  public List<String> electionsWithNoSecondRound() {
+//@	  List<String> noSecondRound = new ArrayList<>();
+//@	  for(var entry : currentElection.secondRounds.entrySet()) {
+//@		  if(entry.getValue() == false) {
+//@			  noSecondRound.add(entry.getKey());
+//@		  }
+//@	  }
+//@	  return noSecondRound;
+//@  }
   // #endif
 
 

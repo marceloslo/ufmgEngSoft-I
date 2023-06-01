@@ -3,11 +3,11 @@ package urna;
 import java.util.Map;
 import java.util.HashMap;
 
-class MultipleElections{
+public class MultipleElections{
     private Map<String,AbstractElection> elections = new HashMap<String,AbstractElection>();
     
     // #if SegundoTurno
-    protected Map<String,Boolean> secondRounds = new HashMap<String,Boolean>();
+//@    protected Map<String,Boolean> secondRounds = new HashMap<String,Boolean>();
     // #endif
     
     private boolean status;
@@ -45,9 +45,9 @@ class MultipleElections{
         for(Map.Entry<String, AbstractElection> entry : elections.entrySet()){
             ended = entry.getValue().finish(password);
             // #if SegundoTurno
-            secondRounds.put(entry.getKey(), !ended);
-            if(ended == false)
-            	this.status = true;
+//@            secondRounds.put(entry.getKey(), !ended);
+//@            if(ended == false)
+//@            	this.status = true;
             // #endif
         }
     }

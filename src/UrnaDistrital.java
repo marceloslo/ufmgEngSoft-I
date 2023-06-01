@@ -22,10 +22,10 @@ public class UrnaDistrital extends Urna{
     protected void voterMenu() {
     	// adequa o menu às condições de segundo turno
     	// #if SegundoTurno
-    	List<String> noSecondRound = urnaModel.electionsWithNoSecondRound();
-    	for(String role : noSecondRound) {
-    		districtalDictionary.values().remove(role);
-    	}
+//@    	List<String> noSecondRound = urnaModel.electionsWithNoSecondRound();
+//@    	for(String role : noSecondRound) {
+//@    		districtalDictionary.values().remove(role);
+//@    	}
     	// #endif
         try {
           printInterface.printSeparator();

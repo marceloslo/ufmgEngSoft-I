@@ -115,11 +115,11 @@ public abstract class Urna {
       urnaModel.endSession(tseProfessional, pwd);
       
       // #if SegundoTurno
-      printInterface.print("Sessões que não apresentaram segundo turno finalizadas com sucesso");
+//@      printInterface.print("Sessões que não apresentaram segundo turno finalizadas com sucesso");
       // #endif
       
       // #if !SegundoTurno
-//@      printInterface.print("Sessão finalizada com sucesso");
+      printInterface.print("Sessão finalizada com sucesso");
       // #endif
       
       printInterface.printSeparator();
