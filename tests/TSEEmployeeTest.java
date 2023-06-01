@@ -13,6 +13,7 @@ public class TSEEmployeeTest {
   TSEEmployee tseEmployee;
   String user;
   String password;
+  String electionPassword = "password";
   MultipleElections currentElection;
   
   @BeforeEach
@@ -24,7 +25,8 @@ public class TSEEmployeeTest {
 		    .password(password)
 		    .build();
 	currentElection = MultipleElections.getInstance();
-	currentElection.addElection("Presidente", new PoliticalElection(password));
+	currentElection.addElection("President", new PoliticalElection(electionPassword));
+	currentElection.addElection("FederalDeputy", new PoliticalElection(electionPassword));
   }
   
   @Test
@@ -34,32 +36,30 @@ public class TSEEmployeeTest {
 
   @Test
   public void addCandidateTest(){
-    String electionPassword = "password";
 
-    Election currentElection = Election.getInstance(electionPassword);
 
     President presidentCandidate1 = new President.Builder().name("João").number(123).party("PDS1").build();
     FederalDeputy federalDeputyCandidate1 = new FederalDeputy.Builder().name("Carlos").number(12345).party("PDS1").state("MG").build();
     
     tseEmployee.addCandidate(presidentCandidate1, currentElection, electionPassword);
     tseEmployee.addCandidate(federalDeputyCandidate1, currentElection, electionPassword);
-    assertTrue("O candidato a presidente não foi adicionado corretamente.", currentElection.getPresidentByNumber(123).getName().equals("João"));
-    assertTrue("O candidato a deputado federal não foi adicionado corretamente.", currentElection.getFederalDeputyByNumber("MG",12345).getName().equals("Carlos"));
+    assertTrue("O candidato a presidente não foi adicionado corretamente.", currentElection.get("President").getCandidateByNumber("123").getName().equals("João"));
+    assertTrue("O candidato a deputado federal não foi adicionado corretamente.", currentElection.get("FederalDeputy").getCandidateByNumber("MG12345").getName().equals("Carlos"));
   }
 
   @Test
   public void removeCandidateTest(){
-    String electionPassword = "password";
-
-    Election currentElection = Election.getInstance(electionPassword);
 
     President presidentCandidate1 = new President.Builder().name("João").number(123).party("PDS1").build();
     FederalDeputy federalDeputyCandidate1 = new FederalDeputy.Builder().name("Carlos").number(12345).party("PDS1").state("MG").build();
-
+    
+    tseEmployee.addCandidate(presidentCandidate1, currentElection, electionPassword);
+    tseEmployee.addCandidate(federalDeputyCandidate1, currentElection, electionPassword);
+    
     tseEmployee.removeCandidate(presidentCandidate1, currentElection, electionPassword);
     tseEmployee.removeCandidate(federalDeputyCandidate1, currentElection, electionPassword);
     
-    assertTrue("O candidato a presidente não foi removido corretamente.", currentElection.getPresidentByNumber(123)==null);
-    assertTrue("O candidato a deputado federal não foi removido corretamente.", currentElection.getFederalDeputyByNumber("MG",12345)==null);
+    assertTrue("O candidato a presidente não foi removido corretamente.", currentElection.get("President").getCandidateByNumber("123")==null);
+    assertTrue("O candidato a deputado federal não foi removido corretamente.", currentElection.get("FederalDeputy").getCandidateByNumber("MG12345")==null);
   }
 }
