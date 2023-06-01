@@ -41,7 +41,7 @@ public class UrnaDatabase {
       }
       myReader.close();
     } catch (Exception e) {
-      System.out.println("Erro na inicialização dos dados");
+      System.out.println("Erro na inicializaï¿½ï¿½o dos dados");
       exit(1);
     }
     return voterMap;
@@ -50,7 +50,7 @@ public class UrnaDatabase {
   protected static void loadCandidates(MultipleElections currentElection, String electionPassword) {
 	  
 	// #if Federal
-    President presidentCandidate1 = new President.Builder().name("O Inominável").number(123).party("Joalheiros").build();
+    President presidentCandidate1 = new President.Builder().name("O Inominï¿½vel").number(123).party("Joalheiros").build();
     currentElection.get("Presidente").addCandidate((Candidate) presidentCandidate1, electionPassword);
 	  
     President presidentCandidate2 = new President.Builder().name("Maria").number(124).party("ED").build();
@@ -63,7 +63,7 @@ public class UrnaDatabase {
     FederalDeputy federalDeputyCandidate3 = new FederalDeputy.Builder().name("Sofia").number(11211).party("IHC").state("MG").build();
     currentElection.get("Deputado Federal").addCandidate((Candidate)federalDeputyCandidate3, electionPassword);
 
-    StateDeputy stateDeputyCandidate1 = new StateDeputy.Builder().name("Cleitudo_Estadual").number(64).party("Otários").state("MG").build();
+    StateDeputy stateDeputyCandidate1 = new StateDeputy.Builder().name("Cleitudo_Estadual").number(64).party("Otï¿½rios").state("MG").build();
     currentElection.get("Deputado Estadual").addCandidate((Candidate)stateDeputyCandidate1, electionPassword);
     StateDeputy stateDeputyCandidate2 = new StateDeputy.Builder().name("Sofia_Estadual").number(32).party("Bobos").state("MG").build();
     currentElection.get("Deputado Estadual").addCandidate((Candidate)stateDeputyCandidate2, electionPassword);
@@ -75,7 +75,7 @@ public class UrnaDatabase {
 
     Governor governorCandidate1 = new Governor.Builder().name("Zema").number(15).party("Destruidores da Serra").state("MG").build();
     currentElection.get("Governador").addCandidate((Candidate)governorCandidate1, electionPassword);
-    Governor governorCandidate2 = new Governor.Builder().name("Anestesia").number(30).party("Amigo do Pó").state("MG").build();
+    Governor governorCandidate2 = new Governor.Builder().name("Anestesia").number(30).party("Amigo do Pï¿½").state("MG").build();
     currentElection.get("Governador").addCandidate((Candidate)governorCandidate2, electionPassword);
 
     // #endif
@@ -89,13 +89,13 @@ public class UrnaDatabase {
 //@    
 //@    CityCouncilor cityCouncilorCandidate1 = new CityCouncilor.Builder().name("Machadinho").number(725).party("Crime").district("Belo Horizonte").build();
 //@    currentElection.get("Vereador").addCandidate((Candidate)cityCouncilorCandidate1, electionPassword);
-//@    CityCouncilor cityCouncilorCandidate2 = new CityCouncilor.Builder().name("Paulão").number(840).party("Trambicão").district("Belo Horizonte").build();
+//@    CityCouncilor cityCouncilorCandidate2 = new CityCouncilor.Builder().name("Paulï¿½o").number(840).party("Trambicï¿½o").district("Belo Horizonte").build();
 //@    currentElection.get("Vereador").addCandidate((Candidate)cityCouncilorCandidate2, electionPassword);
 //@    CityCouncilor cityCouncilorCandidate3 = new CityCouncilor.Builder().name("Henricudo").number(950).party("Quadrilha do Crime").district("Belo Horizonte").build();
 //@    currentElection.get("Vereador").addCandidate((Candidate)cityCouncilorCandidate3, electionPassword);
 //@    CityCouncilor cityCouncilorCandidate4 = new CityCouncilor.Builder().name("Marcelo M").number(666).party("Quadrilha do Crime").district("Belo Horizonte").build();
 //@    currentElection.get("Vereador").addCandidate((Candidate)cityCouncilorCandidate4, electionPassword);
-//@    CityCouncilor cityCouncilorCandidate5 = new CityCouncilor.Builder().name("Matheus Prado").number(667).party("Quadrilha da Força Bruta").district("Belo Horizonte").build();
+//@    CityCouncilor cityCouncilorCandidate5 = new CityCouncilor.Builder().name("Matheus Prado").number(667).party("Quadrilha da Forï¿½a Bruta").district("Belo Horizonte").build();
 //@    currentElection.get("Vereador").addCandidate((Candidate)cityCouncilorCandidate5, electionPassword);
 //@    
     // #endif

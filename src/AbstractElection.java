@@ -32,8 +32,16 @@ public abstract class AbstractElection{
             throw new IllegalArgumentException("password mustn't be empty");
         
         this.password = password;
-        // #if EstatisticasDinamicas
+        // #if EstatisticasDinamicas && (!RealityShow && !Universidade)
          dynamicStatistics.add("Default",new VotesStatisticsObserver());
+        // #endif
+        
+        // #if EstatisticasDinamicas && RealityShow
+//@        dynamicStatistics.add("Default",new RealityStatisticsObserver());
+        // #endif
+        
+        //#if EstatisticasDinamicas && Universidade
+//@        dynamicStatistics.add("Default",new UniversityStatisticsObserver());
         // #endif
     }
 

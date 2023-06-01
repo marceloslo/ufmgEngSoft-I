@@ -40,11 +40,14 @@ abstract class StatisticsObserver {
 	    
 		System.out.println("Resumo das Estatísticas:");
 		System.out.println("  Votos totais: " + this.totalVotes);
+		// #if !RealityShow
 		System.out.println("  Votos nulos: " + this.nullVotes + " ("
 		        + decimalFormater.format((double) this.nullVotes / (double) this.totalVotes * 100) + "%)");
+		// #if !Universidade
 		System.out.println("  Votos brancos: " + this.protestVotes + " ("
 		        + decimalFormater.format((double) this.protestVotes / (double) this.totalVotes * 100) + "%)");
-		    
-	    System.out.println("\tNumero - Partido - Nome - Votos - % dos votos totais");
+		// #endif
+		// #endif
+		  
 	}
 }

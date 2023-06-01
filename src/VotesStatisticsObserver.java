@@ -12,7 +12,8 @@ public class VotesStatisticsObserver extends StatisticsObserver {
 		
 		//Print the votes
 	    this.printHeader();
-		
+	    
+	    System.out.println("\tNumero - Partido - Nome - Votos - % dos votos totais");
 		var decimalFormater = new DecimalFormat("0.00");
 		Stream<Map.Entry<Candidate,Integer>> sortedVotes = this.voteCount.entrySet().stream().sorted(Map.Entry.comparingByValue());
 		sortedVotes.forEach(entry -> {
