@@ -1,6 +1,5 @@
 package urna;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.stream.Collectors;
 import java.text.DecimalFormat;
@@ -14,6 +13,7 @@ public class PoliticalElection extends AbstractElection {
         this.nullVotes = 0;
     }
 
+    @Override
     public String getResults(String password) {
         if (!isValid(password))
             throw new Warning("Senha inválida");
@@ -49,14 +49,14 @@ public class PoliticalElection extends AbstractElection {
         Candidate mostVoted = sortedCandidateRank.get(0);
         if(mostVoted instanceof President){
             // #if ExibirDerrotados
-//@            builder.append("\tNumero - Partido - Nome  - Votos  - % dos votos totais\n");
-//@            for (Candidate candidate : sortedCandidateRank) {
-//@                President president = (President) candidate;
-//@                builder.append("\t" + president.number + " - " + president.party + " - " + president.name + " - "
-//@                    + president.numVotes + " - "
-//@                    + decimalFormater.format((double) president.numVotes / (double) totalVotes * 100)
-//@                    + "%\n");
-//@            }
+            builder.append("\tNumero - Partido - Nome  - Votos  - % dos votos totais\n");
+            for (Candidate candidate : sortedCandidateRank) {
+                President president = (President) candidate;
+                builder.append("\t" + president.number + " - " + president.party + " - " + president.name + " - "
+                    + president.numVotes + " - "
+                    + decimalFormater.format((double) president.numVotes / (double) totalVotes * 100)
+                    + "%\n");
+            }
             // #endif
 
             President electPresident = (President) mostVoted;
@@ -72,15 +72,15 @@ public class PoliticalElection extends AbstractElection {
                 + decimalFormater.format((double) protestVotes / (double) totalVotes * 100) + "%)\n");
             builder.append("  Total: " + totalVotes + "\n");
             // #if ExibirDerrotados
-//@            builder.append("\tNumero - Partido - Nome - Estado - Votos - % dos votos totais\n");
-//@            for (Candidate candidate : sortedCandidateRank) {
-//@                FederalLegislativeCandidate fd = (FederalLegislativeCandidate) candidate;
-//@                builder.append(
-//@                "\t" + fd.number + " - " + fd.party + " - " + fd.state + " - " + fd.name + " - "
-//@                    + fd.numVotes + " - "
-//@                    + decimalFormater.format((double) fd.numVotes / (double) totalVotes * 100)
-//@                    + "%\n");
-//@            }
+            builder.append("\tNumero - Partido - Nome - Estado - Votos - % dos votos totais\n");
+            for (Candidate candidate : sortedCandidateRank) {
+                FederalLegislativeCandidate fd = (FederalLegislativeCandidate) candidate;
+                builder.append(
+                "\t" + fd.number + " - " + fd.party + " - " + fd.state + " - " + fd.name + " - "
+                    + fd.numVotes + " - "
+                    + decimalFormater.format((double) fd.numVotes / (double) totalVotes * 100)
+                    + "%\n");
+            }
             // #endif
             Governor electGovernor = (Governor) mostVoted;
             builder.append("\n\n  Governador eleito:\n");
@@ -95,15 +95,15 @@ public class PoliticalElection extends AbstractElection {
                 + decimalFormater.format((double) protestVotes / (double) totalVotes * 100) + "%)\n");
             builder.append("  Total: " + totalVotes + "\n");
             // #if ExibirDerrotados
-//@            builder.append("\tNumero - Partido - Nome - Estado - Votos - % dos votos totais\n");
-//@            for (Candidate candidate : sortedCandidateRank) {
-//@                FederalLegislativeCandidate fl = (FederalLegislativeCandidate) candidate;
-//@                builder.append(
-//@                "\t" + fl.number + " - " + fl.party + " - " + fl.state + " - " + fl.name + " - "
-//@                    + fl.numVotes + " - "
-//@                    + decimalFormater.format((double) fl.numVotes / (double) totalVotes * 100)
-//@                    + "%\n");
-//@            }
+            builder.append("\tNumero - Partido - Nome - Estado - Votos - % dos votos totais\n");
+            for (Candidate candidate : sortedCandidateRank) {
+                FederalLegislativeCandidate fl = (FederalLegislativeCandidate) candidate;
+                builder.append(
+                "\t" + fl.number + " - " + fl.party + " - " + fl.state + " - " + fl.name + " - "
+                    + fl.numVotes + " - "
+                    + decimalFormater.format((double) fl.numVotes / (double) totalVotes * 100)
+                    + "%\n");
+            }
             // #endif
             FederalLegislativeCandidate firstLegislator = (FederalLegislativeCandidate) mostVoted;
             FederalLegislativeCandidate secondLegislator = (FederalLegislativeCandidate) sortedCandidateRank.get(1);
@@ -121,15 +121,15 @@ public class PoliticalElection extends AbstractElection {
                 + decimalFormater.format((double) protestVotes / (double) totalVotes * 100) + "%)\n");
             builder.append("  Total: " + totalVotes + "\n");
             // #if ExibirDerrotados
-//@            builder.append("\tNumero - Partido - Nome - Distrito - Votos - % dos votos totais\n");
-//@            for (Candidate candidate : sortedCandidateRank) {
-//@                Mayor fd = (Mayor) candidate;
-//@                builder.append(
-//@                "\t" + fd.number + " - " + fd.party + " - " + fd.district + " - " + fd.name + " - "
-//@                    + fd.numVotes + " - "
-//@                    + decimalFormater.format((double) fd.numVotes / (double) totalVotes * 100)
-//@                    + "%\n");
-//@            }
+            builder.append("\tNumero - Partido - Nome - Distrito - Votos - % dos votos totais\n");
+            for (Candidate candidate : sortedCandidateRank) {
+                Mayor fd = (Mayor) candidate;
+                builder.append(
+                "\t" + fd.number + " - " + fd.party + " - " + fd.district + " - " + fd.name + " - "
+                    + fd.numVotes + " - "
+                    + decimalFormater.format((double) fd.numVotes / (double) totalVotes * 100)
+                    + "%\n");
+            }
             // #endif
             Mayor electMayor = (Mayor) mostVoted;
             builder.append("\n\n  Prefeito eleito:\n");

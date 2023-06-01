@@ -46,35 +46,35 @@ public class UrnaBackend {
   }
 
   public Governor getGovernorByNumber(String state,int voteNumber) {
-    return (Governor) currentElection.get("Governador").getCandidateByNumber(state+voteNumber);
+    return (Governor) currentElection.get("Governador").getCandidateByNumber(state+Integer.toString(voteNumber));
   }
   
   public FederalDeputy getFederalDeputyByNumber(String state,int voteNumber) {
-	  return (FederalDeputy) currentElection.get("Deputado Federal").getCandidateByNumber(state+voteNumber);
+	  return (FederalDeputy) currentElection.get("Deputado Federal").getCandidateByNumber(state+Integer.toString(voteNumber));
   }
 
   public StateDeputy getStateDeputyByNumber(String state,int voteNumber) {
-    return (StateDeputy) currentElection.get("Deputado Estadual").getCandidateByNumber(state+voteNumber);
+    return (StateDeputy) currentElection.get("Deputado Estadual").getCandidateByNumber(state+Integer.toString(voteNumber));
   }
 
   public Senator getSenatorByNumber(String state,int voteNumber) {
-    return (Senator) currentElection.get("Senador").getCandidateByNumber(state+voteNumber);
+    return (Senator) currentElection.get("Senador").getCandidateByNumber(state+Integer.toString(voteNumber));
   }
 
   // DISTRICT
 
   public Mayor getMayorByNumber(String district, int voteNumber) {
-    return (Mayor) currentElection.get("Prefeito").getCandidateByNumber(district+voteNumber);
+    return (Mayor) currentElection.get("Prefeito").getCandidateByNumber(district+Integer.toString(voteNumber));
   }
 
   public CityCouncilor getCityCouncilorByNumber(String district, int voteNumber) {
-    return (CityCouncilor) currentElection.get("Vereador").getCandidateByNumber(district+voteNumber);
+    return (CityCouncilor) currentElection.get("Vereador").getCandidateByNumber(district+Integer.toString(voteNumber));
   }
 
   // REALITY
 
   public RealityCandidate getRealityCandidateByNumber(String nationality, int voteNumber) {
-    return (RealityCandidate) currentElection.get("Participante Reality").getCandidateByNumber(nationality+voteNumber);
+    return (RealityCandidate) currentElection.get("Participante Reality").getCandidateByNumber(nationality+Integer.toString(voteNumber));
   }
 
 

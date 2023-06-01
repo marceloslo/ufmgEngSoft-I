@@ -4,7 +4,7 @@ import java.util.Map;
 import java.util.HashMap;
 
 class MultipleElections{
-    private Map<String,PoliticalElection> elections = new HashMap<String,PoliticalElection>();
+    private Map<String,AbstractElection> elections = new HashMap<String,AbstractElection>();
     
     private boolean status;
 
@@ -15,11 +15,11 @@ class MultipleElections{
         return instance;
     }
 
-    public void addElection(String role,PoliticalElection e){
+    public void addElection(String role,AbstractElection e){
         elections.put(role,e);
     }
 
-    public PoliticalElection get(String role){
+    public AbstractElection get(String role){
         return elections.get(role);
     }
 
@@ -28,14 +28,14 @@ class MultipleElections{
     }
 
     public void start(String password) {
-        for(Map.Entry<String, PoliticalElection> entry : elections.entrySet()){
+        for(Map.Entry<String, AbstractElection> entry : elections.entrySet()){
             entry.getValue().start(password);
         }
         this.status = true;
     }
     
     public void finish(String password) {
-        for(Map.Entry<String, PoliticalElection> entry : elections.entrySet()){
+        for(Map.Entry<String, AbstractElection> entry : elections.entrySet()){
             entry.getValue().finish(password);
         }
         this.status = false;
@@ -43,7 +43,7 @@ class MultipleElections{
 
     public String getResults(String password){
         String result="";
-        for(Map.Entry<String, PoliticalElection> entry : elections.entrySet()){
+        for(Map.Entry<String, AbstractElection> entry : elections.entrySet()){
             result = result += entry.getValue().getResults(password);
         }
         return result;

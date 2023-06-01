@@ -31,7 +31,7 @@ public abstract class AbstractElection{
         
         this.password = password;
         // #if EstatisticasDinamicas
-        //@ dynamicStatistics.add(password, new VotesStatisticsObserver());
+         dynamicStatistics.add("Default",new VotesStatisticsObserver());
         // #endif
     }
 
@@ -47,7 +47,7 @@ public abstract class AbstractElection{
         candidate.numVotes++;
         voters.put(voter, 1);
         // #if EstatisticasDinamicas
-        //@ this.dynamicStatistics.notify(password, "Valid");
+         this.dynamicStatistics.notify("Default", "Valid", candidate);
         // #endif
     }
 
@@ -58,7 +58,7 @@ public abstract class AbstractElection{
         voters.put(voter, 1);
         this.nullVotes++;
         // #if EstatisticasDinamicas
-        //@ this.dynamicStatistics.notify(password, "Null");
+         this.dynamicStatistics.notify("Default", "Null");
         // #endif
     }
 
@@ -69,7 +69,7 @@ public abstract class AbstractElection{
         voters.put(voter, 1);
         this.protestVotes++;
         // #if EstatisticasDinamicas
-        //@ this.dynamicStatistics.notify(password, "Protest");
+         this.dynamicStatistics.notify("Default", "Protest");
         // #endif
     }
     public Candidate getCandidateByNumber(String number) {
@@ -143,22 +143,25 @@ public abstract class AbstractElection{
             throw new Warning("Senha inválida");
         
         // #if SegundoTurno
-        // calculate conditions for second round
-        int totalVotes = 0;
-        int maxVotes = 0;
-        for (Candidate candidate : candidates.values()) {
-            totalVotes += candidate.numVotes;
-            if (candidate.numVotes > maxVotes) {
-                maxVotes = candidate.numVotes;
-            }
-        }
-        // check if a candidate had more than 50% of votes
-        // if (!this.segundoTurno && ((double)maxVotes/(double)totalVotes) <= 0.5) {
-        //     this.setupSecondRound();
-        //     return;
-        // }
-
+//@        // calculate conditions for second round
+//@        int totalVotes = 0;
+//@        int maxVotes = 0;
+//@        for (Candidate candidate : candidates.values()) {
+//@            totalVotes += candidate.numVotes;
+//@            if (candidate.numVotes > maxVotes) {
+//@                maxVotes = candidate.numVotes;
+//@            }
+//@        }
+//@        // check if a candidate had more than 50% of votes
+//@        // if (!this.segundoTurno && ((double)maxVotes/(double)totalVotes) <= 0.5) {
+//@        //     this.setupSecondRound();
+//@        //     return;
+//@        // }
+        // #endif
         this.status = false;
     }
 
+    public String getResults(String password) {
+    	return "";
+    }
 }

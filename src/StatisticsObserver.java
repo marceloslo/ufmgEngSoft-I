@@ -8,7 +8,7 @@ abstract class StatisticsObserver {
 	protected int totalVotes=0;
 	protected int nullVotes=0;
 	 
-	protected int blankVotes=0;
+	protected int protestVotes=0;
 	
 	protected Map<Candidate,Integer> voteCount = new HashMap<>();
 	
@@ -19,10 +19,11 @@ abstract class StatisticsObserver {
 		case "Null":
 			this.nullVotes++;
 			break;
-		case "Blank":
-			this.blankVotes++;
+		case "Protest":
+			this.protestVotes++;
 			break;
 		case "Valid":
+			System.out.println(candidate.number);
 			if(!this.voteCount.containsKey(candidate)) {
 				this.voteCount.put(candidate, 0);
 			}
@@ -41,8 +42,8 @@ abstract class StatisticsObserver {
 		System.out.println("  Votos totais: " + this.totalVotes);
 		System.out.println("  Votos nulos: " + this.nullVotes + " ("
 		        + decimalFormater.format((double) this.nullVotes / (double) this.totalVotes * 100) + "%)");
-		System.out.println("  Votos brancos: " + this.blankVotes + " ("
-		        + decimalFormater.format((double) this.blankVotes / (double) this.totalVotes * 100) + "%)");
+		System.out.println("  Votos brancos: " + this.protestVotes + " ("
+		        + decimalFormater.format((double) this.protestVotes / (double) this.totalVotes * 100) + "%)");
 		    
 	    System.out.println("\tNumero - Partido - Nome - Votos - % dos votos totais");
 	}

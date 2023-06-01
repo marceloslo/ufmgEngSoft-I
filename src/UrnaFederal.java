@@ -121,13 +121,14 @@ public class UrnaFederal extends Urna{
     printInterface.askForCandidateNumber(candidateType);
     String vote = readString();
 
-    if (vote.equals("00")){
-        return checkForNullVote(vote, candidateType);
-    }
     if (vote.equals("ext") || vote.equals("br"))
        return checkForProtestVote(vote, candidateType);
     
     int voteNumber = Integer.parseInt(vote);
+    
+    if (voteNumber==0){
+        return checkForNullVote(vote, candidateType);
+    }
 
     Candidate candidate = getCandidate(voter, key, voteNumber);
 
