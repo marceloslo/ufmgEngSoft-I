@@ -16,14 +16,22 @@ public class UrnaBackend {
 
     currentElection = MultipleElections.getInstance();
 
+    // #if Federal
     currentElection.addElection("Presidente", new PoliticalElection(electionPassword));
     currentElection.addElection("Deputado Federal", new PoliticalElection(electionPassword));
     currentElection.addElection("Deputado Estadual", new PoliticalElection(electionPassword));
     currentElection.addElection("Senador", new PoliticalElection(electionPassword));
     currentElection.addElection("Governador", new PoliticalElection(electionPassword));
-    currentElection.addElection("Prefeito", new PoliticalElection(electionPassword));
-    currentElection.addElection("Vereador", new PoliticalElection(electionPassword));
-    currentElection.addElection("Participante Reality", new PoliticalElection(electionPassword));
+    // #endif
+    
+    // #if EstadualMunicipal
+//@    currentElection.addElection("Prefeito", new PoliticalElection(electionPassword));
+//@    currentElection.addElection("Vereador", new PoliticalElection(electionPassword));
+    // #endif
+    
+    // #if RealityShow
+//@    currentElection.addElection("Participante Reality", new PoliticalElection(electionPassword));
+    // #endif
 
     UrnaDatabase.loadCandidates(currentElection, electionPassword);
   }

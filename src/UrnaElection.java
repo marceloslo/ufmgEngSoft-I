@@ -9,7 +9,8 @@ public class UrnaElection {
 
 
 	public static void main(String[] args) {
-
+		Urna urnaEletronica = null;
+		/*
 		int type_of_voting_machine = 0;
 		while(true){
 			printInterface.printTypeOfVotingMachine();
@@ -21,8 +22,6 @@ public class UrnaElection {
 				printInterface.printInvalidVotingMachine();
 			}
 		}
-
-		Urna urnaEletronica = null;
 
 		if (type_of_voting_machine == 1){
 			urnaEletronica = new UrnaFederal("password");
@@ -36,7 +35,22 @@ public class UrnaElection {
 		else if(type_of_voting_machine == 4){
 			// to do 
 		}
-
+		 */
+		// #if Federal
+		urnaEletronica = new UrnaFederal("password");
+		// #endif
+		
+		// #if Municipal
+//@		urnaEletronica = new UrnaDistrital("password");
+		// #endif
+		
+		// #if RealityShow
+//@		urnaEletronica = new UrnaTvShow("password");
+		// #endif
+		
+		// #if Universidade
+//@		//TODO
+		// #endif
 	    urnaEletronica.startMenu();
 	}
 

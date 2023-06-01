@@ -38,16 +38,17 @@ public class PoliticalElection extends AbstractElection {
         var sortedCandidateRank = candidateRank.stream()
             .sorted((o1, o2) -> o1.numVotes == o2.numVotes ? 0 : o1.numVotes < o2.numVotes ? 1 : -1)
             .collect(Collectors.toList());
-
-        builder.append("  Votos presidente:\n");
-        builder.append("  Total: " + totalVotes + "\n");
-        builder.append("  Votos nulos: " + nullVotes + " ("
-            + decimalFormater.format((double) nullVotes / (double) totalVotes * 100) + "%)\n");
-        builder.append("  Votos brancos: " + protestVotes + " ("
-            + decimalFormater.format((double) protestVotes / (double) totalVotes * 100) + "%)\n");
         
         Candidate mostVoted = sortedCandidateRank.get(0);
         if(mostVoted instanceof President){
+        	
+            builder.append("  Votos presidente:\n");
+            builder.append("  Total: " + totalVotes + "\n");
+            builder.append("  Votos nulos: " + nullVotes + " ("
+                + decimalFormater.format((double) nullVotes / (double) totalVotes * 100) + "%)\n");
+            builder.append("  Votos brancos: " + protestVotes + " ("
+                + decimalFormater.format((double) protestVotes / (double) totalVotes * 100) + "%)\n");
+            
             // #if ExibirDerrotados
             builder.append("\tNumero - Partido - Nome  - Votos  - % dos votos totais\n");
             for (Candidate candidate : sortedCandidateRank) {
@@ -87,7 +88,7 @@ public class PoliticalElection extends AbstractElection {
             builder.append(" " + electGovernor.name + " do " + electGovernor.party + " com "
                 + decimalFormater.format((double) electGovernor.numVotes / (double) totalVotes * 100) + "% dos votos\n");
         }
-        else if(mostVoted instanceof FederalLegislativeCandidate){
+        else if(mostVoted instanceof FederalLegislativeCandidate || mostVoted instanceof CityCouncilor){
             builder.append("\n\n  Votos para "+ mostVoted.getClass().getSimpleName().replaceAll("(.)([A-Z])", "$1 $2") + ":\n");
             builder.append("  Votos nulos: " + nullVotes + " ("
                 + decimalFormater.format((double) nullVotes / (double) totalVotes * 100) + "%)\n");
