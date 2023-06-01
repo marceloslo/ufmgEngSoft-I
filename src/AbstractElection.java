@@ -89,35 +89,7 @@ public abstract class AbstractElection{
 
     public void addCandidate(Candidate candidate, String password) {
         String id = Integer.toString(candidate.number);
-
-        if(candidate instanceof FederalDeputy) {
-            FederalDeputy aux = (FederalDeputy) candidate;
-            id = aux.state + id;
-        }
-        if(candidate instanceof StateDeputy) {
-            StateDeputy aux = (StateDeputy) candidate;
-            id = aux.state + id;
-        }
-        if(candidate instanceof Senator) {
-            Senator aux = (Senator) candidate;
-            id = aux.state + id;
-        }
-        if(candidate instanceof Governor) {
-            Governor aux = (Governor) candidate;
-            id = aux.state + id;
-        }
-        if(candidate instanceof Mayor) {
-            Mayor aux = (Mayor) candidate;
-            id = aux.district + id;
-        }
-        if(candidate instanceof CityCouncilor) {
-            CityCouncilor aux = (CityCouncilor) candidate;
-            id = aux.district + id;
-        }
-        if(candidate instanceof RealityCandidate) {
-            RealityCandidate aux = (RealityCandidate) candidate;
-            id = aux.nationality + id;
-        }
+        
         if (candidates.get(id) != null) 
             throw new StopTrap("Candidato já cadastrado");
 
@@ -130,35 +102,6 @@ public abstract class AbstractElection{
 
     public void removeCandidate(Candidate candidate, String password) {
         String id = Integer.toString(candidate.number);
-        
-        if(candidate instanceof FederalDeputy) {
-            FederalDeputy aux = (FederalDeputy) candidate;
-            id = aux.state + id;
-        }
-        if(candidate instanceof StateDeputy) {
-            StateDeputy aux = (StateDeputy) candidate;
-            id = aux.state + id;
-        }
-        if(candidate instanceof Senator) {
-            Senator aux = (Senator) candidate;
-            id = aux.state + id;
-        }
-        if(candidate instanceof Governor) {
-            Governor aux = (Governor) candidate;
-            id = aux.state + id;
-        }
-        if(candidate instanceof Mayor) {
-            Mayor aux = (Mayor) candidate;
-            id = aux.district + id;
-        }
-        if(candidate instanceof CityCouncilor) {
-            CityCouncilor aux = (CityCouncilor) candidate;
-            id = aux.district + id;
-        }
-        if(candidate instanceof RealityCandidate) {
-            RealityCandidate aux = (RealityCandidate) candidate;
-            id = aux.nationality + id;
-        }
         
         if (candidates.get(id) == null)
             throw new StopTrap("Candidato não cadastrado");

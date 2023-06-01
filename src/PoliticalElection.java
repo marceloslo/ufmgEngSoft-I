@@ -14,6 +14,82 @@ public class PoliticalElection extends AbstractElection {
     }
 
     @Override
+    public void addCandidate(Candidate candidate, String password) {
+        String id = Integer.toString(candidate.number);
+
+        if(candidate instanceof FederalDeputy) {
+            FederalDeputy aux = (FederalDeputy) candidate;
+            id = aux.state + id;
+        }
+        else if(candidate instanceof StateDeputy) {
+            StateDeputy aux = (StateDeputy) candidate;
+            id = aux.state + id;
+        }
+        else if(candidate instanceof Senator) {
+            Senator aux = (Senator) candidate;
+            id = aux.state + id;
+        }
+        else if(candidate instanceof Governor) {
+            Governor aux = (Governor) candidate;
+            id = aux.state + id;
+        }
+        else if(candidate instanceof Mayor) {
+            Mayor aux = (Mayor) candidate;
+            id = aux.district + id;
+        }
+        else if(candidate instanceof CityCouncilor) {
+            CityCouncilor aux = (CityCouncilor) candidate;
+            id = aux.district + id;
+        }
+        
+        if (candidates.get(id) != null) 
+            throw new StopTrap("Candidato já cadastrado");
+
+        if (!isValid(password))
+            throw new Warning("Senha inválida");
+
+        candidates.put(id, candidate);
+    }
+    
+    @Override
+    public void removeCandidate(Candidate candidate, String password) {
+        String id = Integer.toString(candidate.number);
+        
+        if(candidate instanceof FederalDeputy) {
+            FederalDeputy aux = (FederalDeputy) candidate;
+            id = aux.state + id;
+        }
+        else if(candidate instanceof StateDeputy) {
+            StateDeputy aux = (StateDeputy) candidate;
+            id = aux.state + id;
+        }
+        else if(candidate instanceof Senator) {
+            Senator aux = (Senator) candidate;
+            id = aux.state + id;
+        }
+        else if(candidate instanceof Governor) {
+            Governor aux = (Governor) candidate;
+            id = aux.state + id;
+        }
+        else if(candidate instanceof Mayor) {
+            Mayor aux = (Mayor) candidate;
+            id = aux.district + id;
+        }
+        else if(candidate instanceof CityCouncilor) {
+            CityCouncilor aux = (CityCouncilor) candidate;
+            id = aux.district + id;
+        }
+        
+        if (candidates.get(id) == null)
+            throw new StopTrap("Candidato não cadastrado");
+
+        if (!isValid(password))
+            throw new Warning("Senha inválida");
+
+        candidates.remove(id);
+    }
+    
+    @Override
     public String getResults(String password) {
         if (!isValid(password))
             throw new Warning("Senha inválida");

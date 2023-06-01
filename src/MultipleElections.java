@@ -59,4 +59,8 @@ public class MultipleElections{
         }
         return result;
     }
+    
+    public static void reset() {
+    	instance=null;
+    }
 }
