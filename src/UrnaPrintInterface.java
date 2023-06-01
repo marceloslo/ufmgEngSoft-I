@@ -39,6 +39,21 @@ public class UrnaPrintInterface {
         print("(1) Presidente");
         print("(2) Deputado Federal");
         print("(3) Deputado Estadual");
+        print("(4) Senador");
+        print("(5) Governador");
+    }
+
+    public void districtalElectionsOptionsToVote(){
+        this.printSeparator();
+        print("Qual a categoria de seu candidato?\n");
+        print("(1) Prefeito");
+        print("(2) Vereador");
+    }
+
+    public void TvShowElectionsOptionsToVote(){
+        this.printSeparator();
+        print("Qual a categoria de seu candidato?\n");
+        print("(1) Participante Reality");
     }
 
     public void invalidCommand(){
@@ -51,7 +66,7 @@ public class UrnaPrintInterface {
 
 
     public void confirmationMessage(String type){
-      print("Você está votando" + type + "\n");
+      print("Você está votando " + type + "\n");
       this.publicConfirmOrChange();
     }
 
@@ -76,5 +91,20 @@ public class UrnaPrintInterface {
     public void displayYesOrNo(){
         print("(1) Sim\n(2) Não");
     }
+
+    public void printTypeOfVotingMachine(){
+
+        print("Qual o tipo de máquina de votação?\n");
+        print("(1) Urna Federal");
+        print("(2) Urna Distrital");
+        print("(3) Urna TV Show");
+        print("(4) Urna Universidade");
+
+    }
+
+    public void printInvalidVotingMachine(){
+        print("Número passado para escolha de máquina de votação é inválido");
+    }
+
 
 }

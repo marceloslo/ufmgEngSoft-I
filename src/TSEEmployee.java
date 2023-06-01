@@ -1,18 +1,12 @@
 package urna;
 // Gerencia a preparação do ambiente (candidatos)
 public class TSEEmployee extends TSEProfessional {
-  public void addCandidate(Candidate candidate, Election election, String password) {
-    if (candidate instanceof President)
-      election.addPresidentCandidate((President) candidate, password);
-    else if (candidate instanceof FederalDeputy)
-      election.addFederalDeputyCandidate((FederalDeputy) candidate, password);
+  public void addCandidate(Candidate candidate, MultipleElections election, String password) {
+    election.get(candidate.getClass().getSimpleName()).addCandidate(candidate, password);
   }
 
-  public void removeCandidate(Candidate candidate, Election election, String password) {
-    if (candidate instanceof President)
-      election.removePresidentCandidate((President) candidate, password);
-    else if (candidate instanceof FederalDeputy)
-      election.removeFederalDeputyCandidate((FederalDeputy) candidate, password);
+  public void removeCandidate(Candidate candidate, MultipleElections election, String password) {
+    election.get(candidate.getClass().getSimpleName()).removeCandidate(candidate, password);
   }
 
   public static class Builder {

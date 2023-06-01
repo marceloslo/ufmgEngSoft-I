@@ -9,21 +9,21 @@ public class RealityCandidate extends Candidate {
             this.nationality = builder.nationality;
         }
 
-        public static abstract class Builder<T extends Builder<T>> 
-                                extends Candidate.Builder<Builder<T>> {
+        public static class Builder extends Candidate.Builder <Builder> {
 
             private String nationality;
   
-            public T nationality(String nationality) {
-                verifyValidNationality(nationality);this.nationality = nationality;
-                return this.getThis();
+            public Builder nationality(String nationality) {
+                verifyValidNationality(nationality);
+                this.nationality = nationality;
+                return this;
             }
 
             public RealityCandidate build() {
                 return new RealityCandidate(this);
             }
 
-            protected void verifyValidNationality(String district){
+            protected void verifyValidNationality(String nationality){
                 
                 if (nationality == null)
                     throw new IllegalArgumentException("nationality mustn't be null");
@@ -31,9 +31,11 @@ public class RealityCandidate extends Candidate {
                 if (nationality.isEmpty())
                     throw new IllegalArgumentException("nationality mustn't be empty");
             }
-            
-            @Override
-            public abstract T getThis();
+
+          @Override
+          public Builder getThis() {
+              return this;
+          }
 
       }
 

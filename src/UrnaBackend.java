@@ -6,34 +6,78 @@ public class UrnaBackend {
 
   private static final Map<String, TSEProfessional> TSEMap = UrnaDatabase.loadTSEProfessionals();
 
-  private static final Map<String, Voter> VoterMap = UrnaDatabase.loadVoters("voterLoad.txt");
+  private static final Map<String, Voter> VoterMap = UrnaDatabase.loadVoters("bemlegal.txt");
 
-  private static Election currentElection;
+  private static MultipleElections currentElection;
   
   private Voter voter;
   
   public UrnaBackend(String electionPassword) {
-    currentElection = Election.getInstance(electionPassword);
+
+    currentElection = MultipleElections.getInstance();
+
+    currentElection.addElection("Presidente", new PoliticalElection(electionPassword));
+    currentElection.addElection("Deputado Federal", new PoliticalElection(electionPassword));
+    currentElection.addElection("Deputado Estadual", new PoliticalElection(electionPassword));
+    currentElection.addElection("Senador", new PoliticalElection(electionPassword));
+    currentElection.addElection("Governador", new PoliticalElection(electionPassword));
+    currentElection.addElection("Prefeito", new PoliticalElection(electionPassword));
+    currentElection.addElection("Vereador", new PoliticalElection(electionPassword));
+    currentElection.addElection("Participante Reality", new PoliticalElection(electionPassword));
 
     UrnaDatabase.loadCandidates(currentElection, electionPassword);
   }
 	
   
-  public void vote(int voteNumber,String role) {
-	  voter.vote(voteNumber, currentElection, role, false);
+  public void vote(String voteNumber, String role) {
+	  voter.vote(voteNumber, currentElection, role, false, false);
   }
   
   public void protestVote(String role) {
-	  voter.vote(0, currentElection, role, true);
+	  voter.vote("0", currentElection, role, true, false);
   }
   
+  public void NullVote(String role) {
+	  voter.vote("0", currentElection, role, false, true);
+  }
+
   public President getPresidentByNumber(int voteNumber) {
-	  return currentElection.getPresidentByNumber(voteNumber);
+	  return (President) currentElection.get("Presidente").getCandidateByNumber(Integer.toString(voteNumber));
+  }
+
+  public Governor getGovernorByNumber(String state,int voteNumber) {
+    return (Governor) currentElection.get("Governador").getCandidateByNumber(state+voteNumber);
   }
   
   public FederalDeputy getFederalDeputyByNumber(String state,int voteNumber) {
-	  return currentElection.getFederalDeputyByNumber(state,voteNumber);
+	  return (FederalDeputy) currentElection.get("Deputado Federal").getCandidateByNumber(state+voteNumber);
   }
+
+  public StateDeputy getStateDeputyByNumber(String state,int voteNumber) {
+    return (StateDeputy) currentElection.get("Deputado Estadual").getCandidateByNumber(state+voteNumber);
+  }
+
+  public Senator getSenatorByNumber(String state,int voteNumber) {
+    return (Senator) currentElection.get("Senador").getCandidateByNumber(state+voteNumber);
+  }
+
+  // DISTRICT
+
+  public Mayor getMayorByNumber(String district, int voteNumber) {
+    return (Mayor) currentElection.get("Prefeito").getCandidateByNumber(district+voteNumber);
+  }
+
+  public CityCouncilor getCityCouncilorByNumber(String district, int voteNumber) {
+    return (CityCouncilor) currentElection.get("Vereador").getCandidateByNumber(district+voteNumber);
+  }
+
+  // REALITY
+
+  public RealityCandidate getRealityCandidateByNumber(String nationality, int voteNumber) {
+    return (RealityCandidate) currentElection.get("Participante Reality").getCandidateByNumber(nationality+voteNumber);
+  }
+
+
   
   public Voter getVoter() {
 	return voter;
@@ -75,9 +119,9 @@ public class UrnaBackend {
     return tseProfessional.getFinalResult(currentElection, pwd);
   }
   
-  public Boolean isSecondRound() {
+  /*public Boolean isSecondRound() {
 	  return currentElection.segundoTurno;
-  }
+  }*/
 
 
 }

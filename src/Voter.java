@@ -6,10 +6,15 @@ public class Voter {
 
   protected final String state;
 
+  protected final String nationality;
+  protected final String district;
+
   public static class Builder {
     private String electoralCard;
     private String name;
     private String state;
+    private String nationality;
+    private String district;
 
     public Builder electoralCard(String electoralCard) {
       this.electoralCard = electoralCard;
@@ -26,6 +31,16 @@ public class Voter {
       return this;
     }
 
+    public Builder district(String district) {
+      this.district = district;
+      return this;
+    }
+    
+    public Builder nationality(String nationality) {
+      this.nationality = nationality;
+      return this;      
+      
+    }
     public Voter build() {
       if (electoralCard == null)
         throw new IllegalArgumentException("electoralCard mustn't be null");
@@ -45,39 +60,42 @@ public class Voter {
       if (state.isEmpty())
         throw new IllegalArgumentException("state mustn't be empty");
 
-      return new Voter(electoralCard, name, state);
+      return new Voter(electoralCard, name, state, district, nationality);
     }
   }
 
-  protected Voter(String electoralCard, String name, String state) {
+  protected Voter(String electoralCard, String name, String state, String district, String nationality) {
     this.electoralCard = electoralCard;
     this.name = name;
     this.state = state;
+    this.district = district;
+    this.nationality = nationality;
   }
 
-  public void vote(int number, Election election, String type, Boolean isProtestVote) {
-    if (type.equals("President")) {
-      if (isProtestVote)
-        election.computeProtestVote("President", this);
-      else if (number == 0)
-        election.computeNullVote("President", this);
-      else {
-        President candidate = election.getPresidentByNumber(number);
-        if (candidate == null)
-          throw new Warning("Número de candidato inválido");
-        election.computeVote(candidate, this);
+  public void vote(String number, MultipleElections election, String type, Boolean isProtestVote, Boolean isNullVote) {
+    if (isProtestVote)
+      election.get(type).computeProtestVote(this);
+    else if (isNullVote)
+      election.get(type).computeNullVote(this);
+    else {
+      // add state to code
+      if(type == "Deputado Federal" || type == "Deputado Estadual" || type == "Senador" || type == "Governador"){ 
+        number = this.state+number;
       }
-    } else if (type.equals("FederalDeputy"))
-      if (isProtestVote)
-        election.computeProtestVote("FederalDeputy", this);
-      else if (number == 0)
-    	election.computeNullVote("FederalDeputy", this);
-      else {
-        FederalDeputy candidate = election.getFederalDeputyByNumber(this.state, number);
-        if (candidate == null)
-          throw new Warning("Número de candidato inválido");
-        election.computeVote(candidate, this);
+      if (type == "Prefeito" || type == "Vereador"){
+        number = this.district+number;
       }
+      if (type == "Participante Reality"){
+        number = this.nationality+number;
+      }
+
+      Candidate candidate = election.get(type).getCandidateByNumber(number);
+      if (candidate == null){
+        election.get(type).computeNullVote(this);
+        throw new Warning("Número de candidato inválido. Voto nulo computado.");
+      }
+      election.get(type).computeVote(candidate, this);
+    }
   }
 
   public String getElectoralCard() {
@@ -90,5 +108,13 @@ public class Voter {
 
   public String getState() {
  	return state;
+  }
+
+  public String getDistrict() {
+  return district;
+  }
+
+  public String getNationality() {
+  return nationality;
   }
 }

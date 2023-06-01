@@ -31,7 +31,7 @@ public abstract class AbstractElection{
         
         this.password = password;
         // #if EstatisticasDinamicas
-        dynamicStatistics.add(password, new VotesStatisticsObserver());
+        //@ dynamicStatistics.add(password, new VotesStatisticsObserver());
         // #endif
     }
 
@@ -47,7 +47,7 @@ public abstract class AbstractElection{
         candidate.numVotes++;
         voters.put(voter, 1);
         // #if EstatisticasDinamicas
-        this.dynamicStatistics.notify(password, "Valid");
+        //@ this.dynamicStatistics.notify(password, "Valid");
         // #endif
     }
 
@@ -58,7 +58,7 @@ public abstract class AbstractElection{
         voters.put(voter, 1);
         this.nullVotes++;
         // #if EstatisticasDinamicas
-        this.dynamicStatistics.notify(password, "Null");
+        //@ this.dynamicStatistics.notify(password, "Null");
         // #endif
     }
 
@@ -69,10 +69,9 @@ public abstract class AbstractElection{
         voters.put(voter, 1);
         this.protestVotes++;
         // #if EstatisticasDinamicas
-        this.dynamicStatistics.notify(password, "Protest");
+        //@ this.dynamicStatistics.notify(password, "Protest");
         // #endif
     }
-
     public Candidate getCandidateByNumber(String number) {
         return candidates.get(number);
     }
@@ -85,7 +84,31 @@ public abstract class AbstractElection{
             FederalDeputy aux = (FederalDeputy) candidate;
             id = aux.state + id;
         }
-        if (candidates.get(id) != null)
+        if(candidate instanceof StateDeputy) {
+            StateDeputy aux = (StateDeputy) candidate;
+            id = aux.state + id;
+        }
+        if(candidate instanceof Senator) {
+            Senator aux = (Senator) candidate;
+            id = aux.state + id;
+        }
+        if(candidate instanceof Governor) {
+            Governor aux = (Governor) candidate;
+            id = aux.state + id;
+        }
+        if(candidate instanceof Mayor) {
+            Mayor aux = (Mayor) candidate;
+            id = aux.district + id;
+        }
+        if(candidate instanceof CityCouncilor) {
+            CityCouncilor aux = (CityCouncilor) candidate;
+            id = aux.district + id;
+        }
+        if(candidate instanceof RealityCandidate) {
+            RealityCandidate aux = (RealityCandidate) candidate;
+            id = aux.nationality + id;
+        }
+        if (candidates.get(id) != null) 
             throw new StopTrap("Candidato já cadastrado");
 
         if (!isValid(password))
@@ -97,11 +120,6 @@ public abstract class AbstractElection{
 
     public void removeCandidate(Candidate candidate, String password) {
         String id = Integer.toString(candidate.number);
-
-        if(candidate instanceof FederalDeputy) {
-            FederalDeputy aux = (FederalDeputy) candidate;
-            id = aux.state + id;
-        }
         if (candidates.get(id) == null)
             throw new StopTrap("Candidato não cadastrado");
 
@@ -139,6 +157,8 @@ public abstract class AbstractElection{
         //     this.setupSecondRound();
         //     return;
         // }
+
+        this.status = false;
     }
 
 }

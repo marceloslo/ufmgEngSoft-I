@@ -499,5 +499,5 @@
 911370005455,Julio Leffler,PE
 700812576647,Brett White,MS
 235450037061,Charles Botsford,PR
-1,Fast,MG
-2,Fastest,MG
+1,Fast,MG, Belo Horizonte, Brasil
+2,Fastest,MG, Belo Horizonte, Brasil

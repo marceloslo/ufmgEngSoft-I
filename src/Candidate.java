@@ -1,48 +1,68 @@
 package urna;
+
 public class Candidate {
-  protected final String name;
 
-  protected final String party;
+    protected String name;
+    protected String party;
+    protected int number;
+    public int numVotes;
 
-  protected final int number;
+      protected Candidate(Builder<?> builder) {
+          this.name = builder.name; this.party= builder.party;
+          this.number = builder.number; this.numVotes = 0;
+      }
 
-  protected int numVotes;
+      public static Builder builder() {
+          return new Builder() {
+              @Override
+              public Builder getThis() {
+                  return this;
+              }
+          };
+      }
 
-  public Candidate(
-      String name,
-      String party,
-      int number) {
+      public abstract static class Builder<T extends Builder<T>> {
 
-    if (name == null)
-      throw new IllegalArgumentException("name mustn't be null");
+          protected String name;
+          protected String party;
+          protected int number;
 
-    if (name.isEmpty())
-      throw new IllegalArgumentException("name mustn't be empty");
+          public abstract T getThis();
 
-    if (party == null)
-      throw new IllegalArgumentException("party mustn't be empty");
+          public T name(String name) {
+              this.verifyStringConditions(name); this.name = name;
+              return this.getThis();
+          }
 
-    if (party.isEmpty())
-      throw new IllegalArgumentException("party mustn't be empty");
+          public T party(String party) {
+              this.verifyStringConditions(party); this.party = party;
+              return this.getThis();
+          }
+          
+          public T number(int number) {
+              this.verifyNumberConditions(number); this.number = number;
+              return this.getThis();
+          }
+          
+          private void verifyNumberConditions(int number){
+            if (number <= 0)
+              throw new IllegalArgumentException("number mustn't be less than or equal to 0");
+    
+          }
 
-    if (number <= 0)
-      throw new IllegalArgumentException("number must be greater or equal to 1");
+          private void verifyStringConditions(String name){
 
-    this.name = name;
-    this.party = party;
-    this.number = number;
-    this.numVotes = 0;
+            if (name == null)
+              throw new IllegalArgumentException("String passed to builder mustn't be null");
+
+            if (name.isEmpty())
+              throw new IllegalArgumentException("String passed to builder mustn't be empty");
+
+          }
+
+          public Candidate build() {
+              return new Candidate(this);
+          }
+      }
+
   }
-
-  public String getName() {
-    return this.name;
-  }
-
-  public String getParty() {
-    return this.party;
-  }
-
-  public int getNumber() {
-    return this.number;
-  }
-}

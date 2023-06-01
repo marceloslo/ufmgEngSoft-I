@@ -8,7 +8,6 @@ public class VotesStatisticsObserver extends StatisticsObserver {
 
 	@Override
 	public void update(Candidate candidate, String voteType) {
-		// TODO Auto-generated method stub
 		this.updateCounts(candidate, voteType);
 		
 		//Print the votes
