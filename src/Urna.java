@@ -100,7 +100,7 @@ public abstract class Urna {
     try {
       printInterface.askForPassword();
       String pwd = readString();
-      urnaModel.startSession(tseProfessional,pwd);//tseProfessional.startSession(currentElection, pwd);
+      urnaModel.startSession(tseProfessional,pwd);
       printInterface.print("Sessão inicializada");
       printInterface.printSeparator();
     } catch (Warning e) {
@@ -112,8 +112,16 @@ public abstract class Urna {
     try {
       printInterface.print("Insira a senha da urna:");
       String pwd = readString();
-      urnaModel.endSession(tseProfessional, pwd);//tseProfessional.endSession(currentElection, pwd);
-      printInterface.print("Sessão finalizada com sucesso");
+      urnaModel.endSession(tseProfessional, pwd);
+      
+      // #if SegundoTurno
+      printInterface.print("Sessões que não apresentaram segundo turno finalizadas com sucesso");
+      // #endif
+      
+      // #if !SegundoTurno
+//@      printInterface.print("Sessão finalizada com sucesso");
+      // #endif
+      
       printInterface.printSeparator();
     } catch (Warning e) {
       printInterface.print(e.getMessage());

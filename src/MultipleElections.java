@@ -6,6 +6,10 @@ import java.util.HashMap;
 class MultipleElections{
     private Map<String,AbstractElection> elections = new HashMap<String,AbstractElection>();
     
+    // #if SegundoTurno
+    protected Map<String,Boolean> secondRounds = new HashMap<String,Boolean>();
+    // #endif
+    
     private boolean status;
 
     private static MultipleElections instance;
@@ -34,11 +38,18 @@ class MultipleElections{
         this.status = true;
     }
     
+    //ends election unless the conditions for second round are met
     public void finish(String password) {
+    	Boolean ended;
+    	this.status = false;
         for(Map.Entry<String, AbstractElection> entry : elections.entrySet()){
-            entry.getValue().finish(password);
+            ended = entry.getValue().finish(password);
+            // #if SegundoTurno
+            secondRounds.put(entry.getKey(), !ended);
+            if(ended == false)
+            	this.status = true;
+            // #endif
         }
-        this.status = false;
     }
 
     public String getResults(String password){

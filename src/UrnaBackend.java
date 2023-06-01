@@ -1,6 +1,8 @@
 package urna;
 
 import java.util.Map;
+import java.util.List;
+import java.util.ArrayList;
 
 public class UrnaBackend {
 
@@ -24,7 +26,7 @@ public class UrnaBackend {
     currentElection.addElection("Governador", new PoliticalElection(electionPassword));
     // #endif
     
-    // #if EstadualMunicipal
+    // #if Municipal
 //@    currentElection.addElection("Prefeito", new PoliticalElection(electionPassword));
 //@    currentElection.addElection("Vereador", new PoliticalElection(electionPassword));
     // #endif
@@ -127,9 +129,17 @@ public class UrnaBackend {
     return tseProfessional.getFinalResult(currentElection, pwd);
   }
   
-  /*public Boolean isSecondRound() {
-	  return currentElection.segundoTurno;
-  }*/
+  // #if SegundoTurno
+  public List<String> electionsWithNoSecondRound() {
+	  List<String> noSecondRound = new ArrayList<>();
+	  for(var entry : currentElection.secondRounds.entrySet()) {
+		  if(entry.getValue() == false) {
+			  noSecondRound.add(entry.getKey());
+		  }
+	  }
+	  return noSecondRound;
+  }
+  // #endif
 
 
 }

@@ -10,14 +10,14 @@ public class Voter {
   protected final String district;
 
   public static class Builder {
-    private String electoralCard;
+    private String identification;
     private String name;
     private String state;
     private String nationality;
     private String district;
 
     public Builder electoralCard(String electoralCard) {
-      this.electoralCard = electoralCard;
+      this.identification = electoralCard;
       return this;
     }
 
@@ -42,10 +42,10 @@ public class Voter {
       
     }
     public Voter build() {
-      if (electoralCard == null)
+      if (identification == null)
         throw new IllegalArgumentException("electoralCard mustn't be null");
 
-      if (electoralCard.isEmpty())
+      if (identification.isEmpty())
         throw new IllegalArgumentException("electoralCard mustn't be empty");
 
       if (name == null)
@@ -60,7 +60,7 @@ public class Voter {
       if (state.isEmpty())
         throw new IllegalArgumentException("state mustn't be empty");
 
-      return new Voter(electoralCard, name, state, district, nationality);
+      return new Voter(identification, name, state, district, nationality);
     }
   }
 

@@ -1,5 +1,6 @@
 package urna;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class UrnaFederal extends Urna{
@@ -22,6 +23,13 @@ public class UrnaFederal extends Urna{
     }
 
   protected void voterMenu() {
+	// adequa o menu às condições de segundo turno
+	// #if SegundoTurno
+	List<String> noSecondRound = urnaModel.electionsWithNoSecondRound();
+	for(String role : noSecondRound) {
+		federalDictionary.values().remove(role);
+	}
+	// #endif
     try {
       printInterface.printSeparator();
       if (!urnaModel.getElectionStatus()) {
@@ -38,7 +46,6 @@ public class UrnaFederal extends Urna{
       printInterface.print(
           "OBS:\n- A partir de agora caso você queira votar nulo você deve usar o numero 00 \n- A partir de agora caso você queira votar branco você deve escrever br\n");
       printInterface.printSeparator();
-      
       for (Map.Entry<Integer, String> entry : federalDictionary.entrySet()) {
         Integer key = entry.getKey();
         String candidateType = entry.getValue();
