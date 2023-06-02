@@ -51,32 +51,32 @@ public class UrnaDatabase {
 	  
 	// #if Federal
     President presidentCandidate1 = new President.Builder().name("O Inomin�vel").number(123).party("Joalheiros").build();
-    currentElection.get("Presidente").addCandidate((Candidate) presidentCandidate1, electionPassword);
+    currentElection.get("President").addCandidate((Candidate) presidentCandidate1, electionPassword);
 	  
     President presidentCandidate2 = new President.Builder().name("Maria").number(124).party("ED").build();
-    currentElection.get("Presidente").addCandidate((Candidate) presidentCandidate2, electionPassword);
+    currentElection.get("President").addCandidate((Candidate) presidentCandidate2, electionPassword);
 	  
     FederalDeputy federalDeputyCandidate1 = new FederalDeputy.Builder().name("Chupetinha").number(12345).party("PL").state("MG").build();
-    currentElection.get("Deputado Federal").addCandidate((Candidate) federalDeputyCandidate1, electionPassword);
+    currentElection.get("FederalDeputy").addCandidate((Candidate) federalDeputyCandidate1, electionPassword);
     FederalDeputy federalDeputyCandidate2 = new FederalDeputy.Builder().name("Cleber").number(54321).party("PDS2").state("MG").build();
-    currentElection.get("Deputado Federal").addCandidate((Candidate)federalDeputyCandidate2, electionPassword);
+    currentElection.get("FederalDeputy").addCandidate((Candidate)federalDeputyCandidate2, electionPassword);
     FederalDeputy federalDeputyCandidate3 = new FederalDeputy.Builder().name("Sofia").number(11211).party("IHC").state("MG").build();
-    currentElection.get("Deputado Federal").addCandidate((Candidate)federalDeputyCandidate3, electionPassword);
+    currentElection.get("FederalDeputy").addCandidate((Candidate)federalDeputyCandidate3, electionPassword);
 
     StateDeputy stateDeputyCandidate1 = new StateDeputy.Builder().name("Cleitudo_Estadual").number(64).party("Ot�rios").state("MG").build();
-    currentElection.get("Deputado Estadual").addCandidate((Candidate)stateDeputyCandidate1, electionPassword);
+    currentElection.get("StateDeputy").addCandidate((Candidate)stateDeputyCandidate1, electionPassword);
     StateDeputy stateDeputyCandidate2 = new StateDeputy.Builder().name("Sofia_Estadual").number(32).party("Bobos").state("MG").build();
-    currentElection.get("Deputado Estadual").addCandidate((Candidate)stateDeputyCandidate2, electionPassword);
+    currentElection.get("StateDeputy").addCandidate((Candidate)stateDeputyCandidate2, electionPassword);
 
     Senator senatorCandidate1 = new Senator.Builder().name("Cleitinho").number(44).party("Fechados com o Capiroto").state("MG").build();
-    currentElection.get("Senador").addCandidate((Candidate) senatorCandidate1, electionPassword);
+    currentElection.get("Senator").addCandidate((Candidate) senatorCandidate1, electionPassword);
     Senator senatorCandidate2 = new Senator.Builder().name("Malika").number(54).party("PSOL").state("MG").build();
-    currentElection.get("Senador").addCandidate((Candidate) senatorCandidate2, electionPassword);
+    currentElection.get("Senator").addCandidate((Candidate) senatorCandidate2, electionPassword);
 
     Governor governorCandidate1 = new Governor.Builder().name("Zema").number(15).party("Destruidores da Serra").state("MG").build();
-    currentElection.get("Governador").addCandidate((Candidate)governorCandidate1, electionPassword);
+    currentElection.get("Governor").addCandidate((Candidate)governorCandidate1, electionPassword);
     Governor governorCandidate2 = new Governor.Builder().name("Anestesia").number(30).party("Amigo do P�").state("MG").build();
-    currentElection.get("Governador").addCandidate((Candidate)governorCandidate2, electionPassword);
+    currentElection.get("Governor").addCandidate((Candidate)governorCandidate2, electionPassword);
 
     // #endif
     

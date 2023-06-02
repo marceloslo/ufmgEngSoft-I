@@ -5,18 +5,15 @@ import java.util.Map;
 
 public class UrnaDistrital extends Urna{
 
-
-    private static int MAX_OPTIONS = 5; 
-    private static int MIN_OPTIONS = 1;
     private static int protestVote = 1;
 
-    private Map<Integer, String> districtalDictionary = new HashMap<>();
+    private Map<String, String> districtalDictionary = new HashMap<>();
 
     public UrnaDistrital(String password){
         super(password);
 
-        districtalDictionary.put(1, "Prefeito");
-        districtalDictionary.put(2, "Vereador");
+        districtalDictionary.put("Prefeito", "Mayor");
+        districtalDictionary.put("Vereador", "CityCouncilor");
     }
 
     protected void voterMenu() {
@@ -44,8 +41,8 @@ public class UrnaDistrital extends Urna{
               "OBS:\n- A partir de agora caso você queira votar nulo você deve usar o numero 00 \n- A partir de agora caso você queira votar branco você deve escrever br\n");
           printInterface.printSeparator();
           
-          for (Map.Entry<Integer, String> entry : districtalDictionary.entrySet()) {
-            Integer key = entry.getKey();
+          for (Map.Entry<String, String> entry : districtalDictionary.entrySet()) {
+            String key = entry.getKey();
             String candidateType = entry.getValue();
             while (!voteForCandidate(voter, key, candidateType));
         }
@@ -88,15 +85,15 @@ public class UrnaDistrital extends Urna{
         }
       }
     
-      private Candidate getCandidate(Voter voter, Integer key, Integer voteNumber){
+      private Candidate getCandidate(Voter voter, String key, Integer voteNumber){
         Candidate candidate = null;
     
-        if (key == 1){
+        if (key == "Mayor"){
             Mayor media_candidate = urnaModel.getMayorByNumber(voter.district, voteNumber); //currentElection.getMayorByNumber(voter.state, voteNumber);
             candidate = media_candidate;
     
         }
-        else if (key == 2){
+        else if (key =="CityCouncilor"){
             CityCouncilor media_candidate = urnaModel.getCityCouncilorByNumber(voter.district, voteNumber); //currentElection.getFederalDeputyByNumber(voter.state, voteNumber);
             candidate = media_candidate;
         }
@@ -108,9 +105,9 @@ public class UrnaDistrital extends Urna{
         return candidate;
       }
     
-      protected boolean voteForCandidate(Voter voter, Integer key, String candidateType){
+      protected boolean voteForCandidate(Voter voter, String key, String candidateType){
         try{
-          printInterface.askForCandidateNumber(candidateType);
+          printInterface.askForCandidateNumber(key);
           String vote = readString();
       
           if (vote.equals("ext") || vote.equals("br"))

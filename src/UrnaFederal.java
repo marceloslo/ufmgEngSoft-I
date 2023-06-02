@@ -5,21 +5,18 @@ import java.util.Map;
 
 public class UrnaFederal extends Urna{
 
-
-    private static int MAX_OPTIONS = 5; 
-    private static int MIN_OPTIONS = 1;
     private static int protestVote = 1;
 
-    private Map<Integer, String> federalDictionary = new HashMap<>();
+    private Map<String, String> federalDictionary = new HashMap<>();
 
     public UrnaFederal(String password){
         super(password);
 
-        federalDictionary.put(1, "Presidente");
-        federalDictionary.put(2, "Deputado Federal");
-        federalDictionary.put(3, "Deputado Estadual");
-        federalDictionary.put(4, "Senador");
-        federalDictionary.put(5, "Governador");
+        federalDictionary.put("Presidente", "President");
+        federalDictionary.put("Deputado Federal", "FederalDeputy");
+        federalDictionary.put("Deputado Estadual", "StateDeputy");
+        federalDictionary.put("Senador", "Senator");
+        federalDictionary.put("Governador", "Governor");
     }
 
   protected void voterMenu() {
@@ -46,8 +43,8 @@ public class UrnaFederal extends Urna{
       printInterface.print(
           "OBS:\n- A partir de agora caso você queira votar nulo você deve usar o numero 00 \n- A partir de agora caso você queira votar branco você deve escrever br\n");
       printInterface.printSeparator();
-      for (Map.Entry<Integer, String> entry : federalDictionary.entrySet()) {
-        Integer key = entry.getKey();
+      for (Map.Entry<String, String> entry : federalDictionary.entrySet()) {
+        String key = entry.getKey();
         String candidateType = entry.getValue();
         while (!voteForCandidate(voter, key, candidateType));
     }
@@ -90,28 +87,28 @@ public class UrnaFederal extends Urna{
     }
   }
 
-  private Candidate getCandidate(Voter voter, Integer key, Integer voteNumber){
+  private Candidate getCandidate(Voter voter, String key, Integer voteNumber){
     Candidate candidate = null;
 
-    if (key == 1){
+    if (key == "Presidente"){
         President media_candidate = urnaModel.getPresidentByNumber(voteNumber);//currentElection.getPresidentByNumber(voteNumber);
         candidate = media_candidate;
 
     }
-    else if (key == 2){
+    else if (key == "Deputado Federal"){
         FederalDeputy media_candidate = urnaModel.getFederalDeputyByNumber(voter.state, voteNumber);//currentElection.getFederalDeputyByNumber(voter.state, voteNumber);
         candidate = media_candidate;
 
     }
-    else if (key == 3){
+    else if (key == "Deputado Estadual"){
         StateDeputy media_candidate = urnaModel.getStateDeputyByNumber(voter.state, voteNumber);//currentElection.getStateDeputyByNumber(voter.state, voteNumber);
         candidate = media_candidate;
     }
-    else if (key == 4){
+    else if (key == "Senador"){
         Senator media_candidate = urnaModel.getSenatorByNumber(voter.state, voteNumber);//currentElection.getSenatorByNumber(voter.state, voteNumber);
         candidate = media_candidate;   
     }
-    else if (key == 5){
+    else if (key == "Governador"){
         Governor media_candidate = urnaModel.getGovernorByNumber(voter.state, voteNumber);//currentElection.getGovernorByNumber(voter.state, voteNumber);
         candidate = media_candidate;
     }
@@ -123,9 +120,9 @@ public class UrnaFederal extends Urna{
     return candidate;
   }
 
-  protected boolean voteForCandidate(Voter voter, Integer key, String candidateType){
+  protected boolean voteForCandidate(Voter voter, String key, String candidateType){
     try{
-    printInterface.askForCandidateNumber(candidateType);
+    printInterface.askForCandidateNumber(key);
     String vote = readString();
 
     if (vote.equals("ext") || vote.equals("br"))

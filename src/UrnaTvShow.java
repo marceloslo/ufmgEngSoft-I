@@ -5,16 +5,12 @@ import java.util.Map;
 
 public class UrnaTvShow extends Urna{
 
-
-    private static int MAX_OPTIONS = 5; 
-    private static int MIN_OPTIONS = 1;
-
-    private Map<Integer, String> tvDictionary = new HashMap<>();
+    private Map<String, String> tvDictionary = new HashMap<>();
 
     public UrnaTvShow(String password){
         super(password);
 
-        tvDictionary.put(1, "Participante Reality");
+        tvDictionary.put("Participante Reality", "RealityCandidate");
     }
         
       protected void voterMenu() {
@@ -30,8 +26,8 @@ public class UrnaTvShow extends Urna{
             return;
           printInterface.printSeparator();
           
-          for (Map.Entry<Integer, String> entry : tvDictionary.entrySet()) {
-            Integer key = entry.getKey();
+          for (Map.Entry<String, String> entry : tvDictionary.entrySet()) {
+            String key = entry.getKey();
             String candidateType = entry.getValue();
             while (!voteForCandidate(voter, key, candidateType));
         }
@@ -45,7 +41,7 @@ public class UrnaTvShow extends Urna{
         }
       }
     
-      private Candidate getCandidate(Voter voter, Integer key, Integer voteNumber){
+      private Candidate getCandidate(Voter voter, String key, Integer voteNumber){
     
         RealityCandidate candidate = urnaModel.getRealityCandidateByNumber(voter.nationality, voteNumber);
 
@@ -56,9 +52,9 @@ public class UrnaTvShow extends Urna{
         return candidate;
       }
     
-      protected boolean voteForCandidate(Voter voter, Integer key, String candidateType){
+      protected boolean voteForCandidate(Voter voter, String key, String candidateType){
         try{
-          printInterface.askForCandidateNumber(candidateType);
+          printInterface.askForCandidateNumber(key);
           
           int voteNumber = Integer.parseInt(readString());
       

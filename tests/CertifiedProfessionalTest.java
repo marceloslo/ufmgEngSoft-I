@@ -28,8 +28,8 @@ public class CertifiedProfessionalTest {
 	electionPassword="password";
 	MultipleElections.reset();
 	election = MultipleElections.getInstance();
-	election.addElection("Presidente", new PoliticalElection(electionPassword));
-	election.addElection("Deputado Federal", new PoliticalElection(electionPassword));
+	election.addElection("President", new PoliticalElection(electionPassword));
+	election.addElection("FederalDeputy", new PoliticalElection(electionPassword));
   }
   
   @Test
@@ -86,29 +86,29 @@ public class CertifiedProfessionalTest {
     Voter v3 = new Voter.Builder().name("v3").electoralCard("333456789033").state("MG").build();
 
     President presidentCandidate1 = new President.Builder().name("João").number(123).party("PDS1").build();
-    election.get("Presidente").addCandidate(presidentCandidate1, electionPassword);
+    election.get("President").addCandidate(presidentCandidate1, electionPassword);
     President presidentCandidate2 = new President.Builder().name("Maria").number(124).party("ED").build();
-    election.get("Presidente").addCandidate(presidentCandidate2, electionPassword);
+    election.get("President").addCandidate(presidentCandidate2, electionPassword);
     
     FederalDeputy federalDeputyCandidate1 = new FederalDeputy.Builder().name("Carlos").number(12345).party("PDS1")
         .state("MG").build();  
-    election.get("Deputado Federal").addCandidate(federalDeputyCandidate1, electionPassword);
+    election.get("FederalDeputy").addCandidate(federalDeputyCandidate1, electionPassword);
     FederalDeputy federalDeputyCandidate2 = new FederalDeputy.Builder().name("Cleber").number(54321).party("PDS2")
         .state("MG").build();
-    election.get("Deputado Federal").addCandidate(federalDeputyCandidate2, electionPassword);
+    election.get("FederalDeputy").addCandidate(federalDeputyCandidate2, electionPassword);
     FederalDeputy federalDeputyCandidate3 = new FederalDeputy.Builder().name("Sofia").number(11211).party("IHC")
         .state("MG").build();
-    election.get("Deputado Federal").addCandidate(federalDeputyCandidate3, electionPassword);
+    election.get("FederalDeputy").addCandidate(federalDeputyCandidate3, electionPassword);
 
     election.start(electionPassword);
 
-    v1.vote("123", election, "Presidente", false,false);
-    v2.vote("123", election, "Presidente", false,false);
-    v3.vote("124", election, "Presidente", false,false);
+    v1.vote("123", election, "President", false,false);
+    v2.vote("123", election, "President", false,false);
+    v3.vote("124", election, "President", false,false);
     
-    v1.vote("0000", election, "Deputado Federal", false, true);
-    v2.vote("12345", election, "Deputado Federal", false,false);
-    v3.vote("0", election, "Deputado Federal", true, false);
+    v1.vote("0000", election, "FederalDeputy", false, true);
+    v2.vote("12345", election, "FederalDeputy", false,false);
+    v3.vote("0", election, "FederalDeputy", true, false);
     System.out.println("___________________________________________________");
     String ans = "Resultado da eleicao:  Votos presidente:  Total: 3  Votos nulos: 0 (0,00%)  Votos brancos: 0 (0,00%)"+
     "Numero - Partido - Nome  - Votos  - % dos votos totais123 - PDS1 - João - 2 - 66,67%124 - ED - Maria - 1 - 33,33%"+

@@ -79,7 +79,7 @@ public class Voter {
       election.get(type).computeNullVote(this);
     else {
       // add state to code
-      if(type == "Deputado Federal" || type == "Deputado Estadual" || type == "Senador" || type == "Governador"){ 
+      if(type == "FederalDeputy" || type == "StateDeputy" || type == "Senator" || type == "Governor"){ 
         number = this.state+number;
       }
       if (type == "Prefeito" || type == "Vereador"){

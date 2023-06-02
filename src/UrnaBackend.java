@@ -19,11 +19,11 @@ public class UrnaBackend {
     currentElection = MultipleElections.getInstance();
 
     // #if Federal
-    currentElection.addElection("Presidente", new PoliticalElection(electionPassword));
-    currentElection.addElection("Deputado Federal", new PoliticalElection(electionPassword));
-    currentElection.addElection("Deputado Estadual", new PoliticalElection(electionPassword));
-    currentElection.addElection("Senador", new PoliticalElection(electionPassword));
-    currentElection.addElection("Governador", new PoliticalElection(electionPassword));
+    currentElection.addElection("President", new PoliticalElection(electionPassword));
+    currentElection.addElection("FederalDeputy", new PoliticalElection(electionPassword));
+    currentElection.addElection("StateDeputy", new PoliticalElection(electionPassword));
+    currentElection.addElection("Senator", new PoliticalElection(electionPassword));
+    currentElection.addElection("Governor", new PoliticalElection(electionPassword));
     // #endif
     
     // #if Municipal
@@ -52,23 +52,23 @@ public class UrnaBackend {
   }
 
   public President getPresidentByNumber(int voteNumber) {
-	  return (President) currentElection.get("Presidente").getCandidateByNumber(Integer.toString(voteNumber));
+	  return (President) currentElection.get("President").getCandidateByNumber(Integer.toString(voteNumber));
   }
 
   public Governor getGovernorByNumber(String state,int voteNumber) {
-    return (Governor) currentElection.get("Governador").getCandidateByNumber(state+Integer.toString(voteNumber));
+    return (Governor) currentElection.get("Governor").getCandidateByNumber(state+Integer.toString(voteNumber));
   }
   
   public FederalDeputy getFederalDeputyByNumber(String state,int voteNumber) {
-	  return (FederalDeputy) currentElection.get("Deputado Federal").getCandidateByNumber(state+Integer.toString(voteNumber));
+	  return (FederalDeputy) currentElection.get("FederalDeputy").getCandidateByNumber(state+Integer.toString(voteNumber));
   }
 
   public StateDeputy getStateDeputyByNumber(String state,int voteNumber) {
-    return (StateDeputy) currentElection.get("Deputado Estadual").getCandidateByNumber(state+Integer.toString(voteNumber));
+    return (StateDeputy) currentElection.get("StateDeputy").getCandidateByNumber(state+Integer.toString(voteNumber));
   }
 
   public Senator getSenatorByNumber(String state,int voteNumber) {
-    return (Senator) currentElection.get("Senador").getCandidateByNumber(state+Integer.toString(voteNumber));
+    return (Senator) currentElection.get("Senator").getCandidateByNumber(state+Integer.toString(voteNumber));
   }
 
   // DISTRICT
