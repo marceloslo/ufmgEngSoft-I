@@ -37,7 +37,7 @@ public class UrnaUniversity extends Urna{
 
       printInterface.print("Vamos começar!\n");
       printInterface.print(
-          "OBS:\n- A partir de agora caso você queira se abster você deve escrever abs\n");
+          "OBS:\n- A partir de agora caso você queira votar branco você deve escrever br.\n- A partir de agora caso você queira se abster você deve escrever abs\n");
       printInterface.printSeparator();
       for (Map.Entry<String, String> entry : universityDictionary.entrySet()) {
         String key = entry.getKey();
@@ -55,7 +55,12 @@ public class UrnaUniversity extends Urna{
   }
 
   private boolean checkForProtestVote(String vote, String candidateType){
-    printInterface.confirmationMessage("abstenção");
+    if (vote == "br")
+      printInterface.confirmationMessage("branco");
+    else if (vote == "abs")
+      printInterface.confirmationMessage("abstenção");
+    else 
+      return false;
 
     int confirm = readInt();
     if (confirm == protestVote){
@@ -66,9 +71,9 @@ public class UrnaUniversity extends Urna{
     }
   }
 
-  private Candidate getCandidate(Voter voter, String key, Integer voteNumber){
+  private Candidate getCandidate(Integer voteNumber){
 
-    DepartmentHead candidate = urnaModel.getUniversityCandidateByNumber(voter.department, voteNumber);
+    DepartmentHead candidate = urnaModel.getUniversityCandidateByNumber(voteNumber);
     
     if(candidate == null){
           throw new Warning("Candidato não encontrado");
@@ -82,12 +87,12 @@ public class UrnaUniversity extends Urna{
     printInterface.askForCandidateNumber(key);
     String vote = readString();
 
-    if (vote.equals("abs"))
+    if (vote.equals("br")||vote.equals("abs"))
        return checkForProtestVote(vote, candidateType);
     
     int voteNumber = Integer.parseInt(vote);
 
-    Candidate candidate = getCandidate(voter, key, voteNumber);
+    Candidate candidate = getCandidate(voteNumber);
 
     printInterface.confirmationCandidate(candidate.name, candidate.party);
     
