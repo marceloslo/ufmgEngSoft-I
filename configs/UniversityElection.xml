@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<configuration>
+	<feature automatic="selected" name="Urna"/>
+	<feature automatic="selected" name="Eleicao"/>
+	<feature automatic="selected" name="Exibicao"/>
+	<feature automatic="selected" name="ExibirEleitos"/>
+	<feature automatic="selected" name="ExibirVotosNominais"/>
+	<feature name="ExibirDerrotados"/>
+	<feature name="EstatisticasDinamicas"/>
+	<feature name="SegundoTurno"/>
+</configuration>
