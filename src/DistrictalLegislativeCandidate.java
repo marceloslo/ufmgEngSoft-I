@@ -1,5 +1,5 @@
 package urna;
-
+//#if Federal || Municipal 
 public class DistrictalLegislativeCandidate extends Candidate {
 
     public String district;
@@ -38,3 +38,4 @@ public class DistrictalLegislativeCandidate extends Candidate {
     }
 
 }
+// #endif

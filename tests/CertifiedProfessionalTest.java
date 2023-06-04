@@ -27,7 +27,7 @@ public class CertifiedProfessionalTest {
 			.build();
 	electionPassword="password";
 	MultipleElections.reset();
-	election = MultipleElections.getInstance();
+	election = MultipleElections.getInstance(electionPassword);
 	election.addElection("President", new PoliticalElection(electionPassword));
 	election.addElection("FederalDeputy", new PoliticalElection(electionPassword));
   }

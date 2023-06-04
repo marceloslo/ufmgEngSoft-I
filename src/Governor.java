@@ -1,4 +1,5 @@
 package urna;
+// #if Federal || Municipal
 
 public class Governor extends FederalLegislativeCandidate{
       
@@ -20,3 +21,5 @@ public class Governor extends FederalLegislativeCandidate{
     }    
 
 };
+
+//#endif

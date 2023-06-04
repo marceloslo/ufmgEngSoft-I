@@ -1,9 +1,9 @@
 package urna;
+// #if Federal
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import urna.FederalLegislativeCandidate;
 
 public class UrnaFederal extends Urna{
 
@@ -24,10 +24,10 @@ public class UrnaFederal extends Urna{
   protected void voterMenu() {
 	// adequa o menu às condições de segundo turno
 	// #if SegundoTurno
-//@	List<String> noSecondRound = urnaModel.electionsWithNoSecondRound();
-//@	for(String role : noSecondRound) {
-//@		federalDictionary.values().remove(role);
-//@	}
+	List<String> noSecondRound = urnaModel.electionsWithNoSecondRound();
+	for(String role : noSecondRound) {
+		federalDictionary.values().remove(role);
+	}
 	// #endif
     try {
       printInterface.printSeparator();
@@ -232,3 +232,5 @@ public class UrnaFederal extends Urna{
       }
   }
 }
+
+// #endif

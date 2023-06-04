@@ -7,15 +7,29 @@ public class MultipleElections{
     private Map<String,AbstractElection> elections = new HashMap<String,AbstractElection>();
     
     // #if SegundoTurno
-//@    protected Map<String,Boolean> secondRounds = new HashMap<String,Boolean>();
+    protected Map<String,Boolean> secondRounds = new HashMap<String,Boolean>();
     // #endif
     
     private boolean status;
 
     private static MultipleElections instance;
 
-    public static MultipleElections getInstance(){
-        if(instance==null) instance = new MultipleElections();
+    private static String password = null;
+
+    public static MultipleElections getInstance(String electionPassword){
+        if(instance==null && password == null){
+            instance = new MultipleElections();
+            password = electionPassword;
+        }
+        if (password == null)
+          throw new IllegalArgumentException("password mustn't be null");
+    
+        if (password.isEmpty())
+          throw new IllegalArgumentException("password mustn't be empty");
+        
+        if (password!=electionPassword)
+          throw new Warning("Senha inválida");
+          
         return instance;
     }
 
@@ -45,9 +59,9 @@ public class MultipleElections{
         for(Map.Entry<String, AbstractElection> entry : elections.entrySet()){
             ended = entry.getValue().finish(password);
             // #if SegundoTurno
-//@            secondRounds.put(entry.getKey(), !ended);
-//@            if(ended == false)
-//@            	this.status = true;
+            secondRounds.put(entry.getKey(), !ended);
+            if(ended == false)
+            	this.status = true;
             // #endif
         }
     }

@@ -23,7 +23,6 @@ abstract class StatisticsObserver {
 			this.protestVotes++;
 			break;
 		case "Valid":
-			System.out.println(candidate.number);
 			if(!this.voteCount.containsKey(candidate)) {
 				this.voteCount.put(candidate, 0);
 			}

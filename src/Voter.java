@@ -93,10 +93,10 @@ public class Voter {
       if(type == "FederalDeputy" || type == "StateDeputy" || type == "Senator" || type == "Governor"){ 
         number = this.state+number;
       }
-      if (type == "Prefeito" || type == "Vereador"){
+      if (type == "Mayor" || type == "CityCouncilor"){
         number = this.district+number;
       }
-      if (type == "Participante Reality"){
+      if (type == "RealityCandidate"){
         number = this.nationality+number;
       }
 

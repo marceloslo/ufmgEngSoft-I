@@ -1,6 +1,6 @@
 package urna;
 
-
+//#if Federal || Municipal
 public class President extends Candidate {
 
       public President(Builder builder) {
@@ -20,3 +20,4 @@ public class President extends Candidate {
       }
 
   }
+// #endif

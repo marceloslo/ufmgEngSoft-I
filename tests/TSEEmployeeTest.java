@@ -24,7 +24,7 @@ public class TSEEmployeeTest {
 			.user(user)
 		    .password(password)
 		    .build();
-	currentElection = MultipleElections.getInstance();
+	currentElection = MultipleElections.getInstance(electionPassword);
 	currentElection.addElection("President", new PoliticalElection(electionPassword));
 	currentElection.addElection("FederalDeputy", new PoliticalElection(electionPassword));
   }

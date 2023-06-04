@@ -1,4 +1,5 @@
 package urna;
+// #if Federal || Municipal
 
 public class StateDeputy extends FederalLegislativeCandidate{
       
@@ -20,3 +21,4 @@ public class StateDeputy extends FederalLegislativeCandidate{
     }    
 
 };
+// #endif

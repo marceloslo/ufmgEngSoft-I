@@ -1,4 +1,5 @@
 package urna;
+// #if Federal || Municipal
 
 public class CityCouncilor extends DistrictalLegislativeCandidate{
       
@@ -20,3 +21,5 @@ public class CityCouncilor extends DistrictalLegislativeCandidate{
     }    
 
 };
+
+// #endif

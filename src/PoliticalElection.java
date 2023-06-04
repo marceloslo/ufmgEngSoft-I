@@ -1,4 +1,6 @@
 package urna;
+
+// #if Federal || Municipal
 import java.util.ArrayList;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -164,7 +166,7 @@ public class PoliticalElection extends AbstractElection {
             builder.append(" " + electGovernor.name + " do " + electGovernor.party + " com "
                 + decimalFormater.format((double) electGovernor.numVotes / (double) totalVotes * 100) + "% dos votos\n");
         }
-        else if(mostVoted instanceof FederalLegislativeCandidate || mostVoted instanceof CityCouncilor){
+        else if(mostVoted instanceof FederalLegislativeCandidate){
             builder.append("\n\n  Votos para "+ mostVoted.getClass().getSimpleName().replaceAll("(.)([A-Z])", "$1 $2") + ":\n");
             builder.append("  Votos nulos: " + nullVotes + " ("
                 + decimalFormater.format((double) nullVotes / (double) totalVotes * 100) + "%)\n");
@@ -213,8 +215,41 @@ public class PoliticalElection extends AbstractElection {
             builder.append(" " + electMayor.name + " do " + electMayor.party + " com "
                 + decimalFormater.format((double) electMayor.numVotes / (double) totalVotes * 100) + "% dos votos\n");
         }
+        else if(mostVoted instanceof CityCouncilor){
+            builder.append("\n\n  Votos para Vereador:\n");
+            builder.append("  Votos nulos: " + nullVotes + " ("
+                + decimalFormater.format((double) nullVotes / (double) totalVotes * 100) + "%)\n");
+            builder.append("  Votos brancos: " + protestVotes + " ("
+                + decimalFormater.format((double) protestVotes / (double) totalVotes * 100) + "%)\n");
+            builder.append("  Total: " + totalVotes + "\n");
+            // #if ExibirDerrotados
+            builder.append("\tNumero - Partido - Nome - Distrito - Votos - % dos votos totais\n");
+            for (Candidate candidate : sortedCandidateRank) {
+                CityCouncilor fd = (CityCouncilor) candidate;
+                builder.append(
+                "\t" + fd.number + " - " + fd.party + " - " + fd.district + " - " + fd.name + " - "
+                    + fd.numVotes + " - "
+                    + decimalFormater.format((double) fd.numVotes / (double) totalVotes * 100)
+                    + "%\n");
+            }
+            // #endif
+            CityCouncilor electCouncilor = (CityCouncilor) mostVoted;
+            builder.append("\n\n  Vereador eleito:\n");
+            builder.append(" " + electCouncilor.name + " do " + electCouncilor.party + " com "
+                + decimalFormater.format((double) electCouncilor.numVotes / (double) totalVotes * 100) + "% dos votos\n");
+        }
         builder.append("\n=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=\n\n");
         return builder.toString();
   }
 
+    @Override
+    protected boolean checkSecondRoundConditions() {
+    	Map.Entry<String,Candidate> entry = candidates.entrySet().iterator().next();
+    	if(entry.getValue() instanceof President || entry.getValue() instanceof Mayor || entry.getValue() instanceof Governor) {
+    		return true;
+    	}
+    	return false;
+    }
 }
+
+// #endif

@@ -1,4 +1,5 @@
 package urna;
+// #if Federal || Municipal
 import java.util.Set;
 
 public class FederalLegislativeCandidate extends Candidate {
@@ -45,3 +46,5 @@ public class FederalLegislativeCandidate extends Candidate {
       }
 
   }
+
+// #endif

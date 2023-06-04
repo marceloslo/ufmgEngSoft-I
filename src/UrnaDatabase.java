@@ -36,12 +36,21 @@ public class UrnaDatabase {
       while (myReader.hasNextLine()) {
         String data = myReader.nextLine();
         var voterData = data.split(",");
+        // #if Federal || Municipal
         voterMap.put(voterData[0],
-          new Voter.Builder().electoralCard(voterData[0]).name(voterData[1]).state(voterData[2]).district(voterData[3]).nationality(voterData[4]).universityJob(voterData[5]).build());
+          new Voter.Builder().electoralCard(voterData[0]).name(voterData[1]).state(voterData[2]).district(voterData[3]).build());
+        // #endif
+        // #if RealityShow
+//@          voterMap.put(voterData[0],
+//@                  new Voter.Builder().electoralCard(voterData[0]).name(voterData[1]).state(voterData[2]).district(voterData[3]).nationality(voterData[4]).build());
+        // #endif
+        // #if Universidade
+//@          voterMap.put(voterData[0],
+//@                  new Voter.Builder().electoralCard(voterData[0]).name(voterData[1]).state(voterData[2]).district(voterData[3]).universityJob(voterData[4]).build());
+        // #endif
       }
       myReader.close();
     } catch (Exception e) {
-      System.out.println("Erro na inicializa��o dos dados");
       exit(1);
     }
     return voterMap;
@@ -82,35 +91,35 @@ public class UrnaDatabase {
     
     // #if Municipal
 //@    Mayor mayorCandidate1 = new Mayor.Builder().name("Kalil").number(13).party("Mafiosos").district("Belo Horizonte").build();
-//@    currentElection.get("Prefeito").addCandidate((Candidate)mayorCandidate1, electionPassword);
+//@    currentElection.get("Mayor").addCandidate((Candidate)mayorCandidate1, electionPassword);
 //@    Mayor mayorCandidate2 = new Mayor.Builder().name("Fuad").number(25).party("Kibes").district("Belo Horizonte").build();
-//@    currentElection.get("Prefeito").addCandidate((Candidate)mayorCandidate2, electionPassword);
+//@    currentElection.get("Mayor").addCandidate((Candidate)mayorCandidate2, electionPassword);
 //@    
 //@    
 //@    CityCouncilor cityCouncilorCandidate1 = new CityCouncilor.Builder().name("Machadinho").number(725).party("Crime").district("Belo Horizonte").build();
-//@    currentElection.get("Vereador").addCandidate((Candidate)cityCouncilorCandidate1, electionPassword);
+//@    currentElection.get("CityCouncilor").addCandidate((Candidate)cityCouncilorCandidate1, electionPassword);
 //@    CityCouncilor cityCouncilorCandidate2 = new CityCouncilor.Builder().name("Paul�o").number(840).party("Trambic�o").district("Belo Horizonte").build();
-//@    currentElection.get("Vereador").addCandidate((Candidate)cityCouncilorCandidate2, electionPassword);
+//@    currentElection.get("CityCouncilor").addCandidate((Candidate)cityCouncilorCandidate2, electionPassword);
 //@    CityCouncilor cityCouncilorCandidate3 = new CityCouncilor.Builder().name("Henricudo").number(950).party("Quadrilha do Crime").district("Belo Horizonte").build();
-//@    currentElection.get("Vereador").addCandidate((Candidate)cityCouncilorCandidate3, electionPassword);
+//@    currentElection.get("CityCouncilor").addCandidate((Candidate)cityCouncilorCandidate3, electionPassword);
 //@    CityCouncilor cityCouncilorCandidate4 = new CityCouncilor.Builder().name("Marcelo M").number(666).party("Quadrilha do Crime").district("Belo Horizonte").build();
-//@    currentElection.get("Vereador").addCandidate((Candidate)cityCouncilorCandidate4, electionPassword);
+//@    currentElection.get("CityCouncilor").addCandidate((Candidate)cityCouncilorCandidate4, electionPassword);
 //@    CityCouncilor cityCouncilorCandidate5 = new CityCouncilor.Builder().name("Matheus Prado").number(667).party("Quadrilha da For�a Bruta").district("Belo Horizonte").build();
-//@    currentElection.get("Vereador").addCandidate((Candidate)cityCouncilorCandidate5, electionPassword);
+//@    currentElection.get("CityCouncilor").addCandidate((Candidate)cityCouncilorCandidate5, electionPassword);
 //@    
     // #endif
 
     // #if RealityShow
 //@    RealityCandidate realityCandidate1 = new RealityCandidate.Builder().name("Babu").number(555).party("BBB").nationality("Brasil").build();
-//@    currentElection.get("Participante Reality").addCandidate((Candidate)realityCandidate1, electionPassword);
+//@    currentElection.get("RealityCandidate").addCandidate((Candidate)realityCandidate1, electionPassword);
     // #endif
 
-    // #if University
-//@    UniversityCandidate universityCandidate1 = new UniversityCandidate.Builder().name("Loureiro").number(09876543267).party("DCC").nationality("Brasil").build();
-//@    currentElection.get("Chefe de Departamento").addCandidate((Candidate)universityCandidate1, electionPassword);
+    // #if Universidade
+//@    UniversityCandidate universityCandidate1 = new UniversityCandidate.Builder().name("Loureiro").number(8765432).party("DCC").nationality("Brasil").build();
+//@    currentElection.get("DepartmentHead").addCandidate((Candidate)universityCandidate1, electionPassword);
 //@
-//@    UniversityCandidate universityCandidate1 = new UniversityCandidate.Builder().name("Mariza").number(12345678902).party("DCC").nationality("Brasil").build();
-//@    currentElection.get("Chefe de Departamento").addCandidate((Candidate)universityCandidate1, electionPassword);
+//@    UniversityCandidate universityCandidate2 = new UniversityCandidate.Builder().name("Mariza").number(123456789).party("DCC").nationality("Brasil").build();
+//@    currentElection.get("DepartmentHead").addCandidate((Candidate)universityCandidate2, electionPassword);
     // #endif
 
   }
