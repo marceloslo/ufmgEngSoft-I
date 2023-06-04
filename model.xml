@@ -21,6 +21,18 @@
 					<feature name="EstatisticasDinamicas"/>
 				</and>
 				<feature name="SegundoTurno"/>
+				<alt abstract="true" mandatory="true" name="TipoDeEleicao">
+					<feature name="Federal"/>
+					<feature name="Municipal"/>
+					<feature name="RealityShow"/>
+					<feature name="Universidade"/>
+				</alt>
+				<and abstract="true" mandatory="true" name="Votacao">
+					<feature mandatory="true" name="ConfirmarVoto"/>
+					<feature mandatory="true" name="CorrigirVoto"/>
+					<feature name="Branco"/>
+					<feature name="Nulo"/>
+				</and>
 			</and>
 		</and>
 	</struct>
