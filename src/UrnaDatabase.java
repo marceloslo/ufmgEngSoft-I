@@ -108,6 +108,9 @@ public class UrnaDatabase {
     // #if University
 //@    UniversityCandidate universityCandidate1 = new UniversityCandidate.Builder().name("Loureiro").number(09876543267).party("DCC").nationality("Brasil").build();
 //@    currentElection.get("Chefe de Departamento").addCandidate((Candidate)universityCandidate1, electionPassword);
+
+//@    UniversityCandidate universityCandidate1 = new UniversityCandidate.Builder().name("Mariza").number(12345678902).party("DCC").nationality("Brasil").build();
+//@    currentElection.get("Chefe de Departamento").addCandidate((Candidate)universityCandidate1, electionPassword);
     // #endif
 
   }
