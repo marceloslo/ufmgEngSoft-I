@@ -23,7 +23,7 @@ public class UrnaElection {
 		// #endif
 		
 		// #if Universidade
-//@		//TODO
+//@		urnaEletronica = new UrnaUniversity("password");
 		// #endif
 	    urnaEletronica.startMenu();
 	}

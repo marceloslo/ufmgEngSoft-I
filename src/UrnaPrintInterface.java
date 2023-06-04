@@ -56,6 +56,12 @@ public class UrnaPrintInterface {
         print("(1) Participante Reality");
     }
 
+    public void UniversityElectionsOptionsToVote(){
+        this.printSeparator();
+        print("Qual a categoria de seu candidato?\n");
+        print("(1) Chefe de Departamento");
+    }
+
     public void invalidCommand(){
         print("Comando inválido\n");
     }
