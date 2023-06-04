@@ -6,13 +6,15 @@ import java.util.Map;
 public class UrnaUniversity extends Urna{
 
     private static int protestVote = 1;
-
+  
     private Map<String, String> universityDictionary = new HashMap<>();
 
     public UrnaUniversity(String password){
         super(password);
-
-        federalDictionary.put("Chefe de Departamento", "DepartmentHead");
+        
+        universityDictionary.put("Chefe de Departamento", "DepartmentHead");
+        universityDictionary.put("Reitor", "Chancellor");
+        
     }
 
   protected void voterMenu() {
@@ -54,14 +56,8 @@ public class UrnaUniversity extends Urna{
     }
   }
 
-  private boolean checkForProtestVote(String vote, String candidateType){
-    if (vote == "br")
-      printInterface.confirmationMessage("branco");
-    else if (vote == "abs")
-      printInterface.confirmationMessage("abstenção");
-    else 
-      return false;
-
+  private boolean checkForProtestVote(String vote, String candidateType) {
+    printInterface.confirmationMessage("branco");
     int confirm = readInt();
     if (confirm == protestVote){
         urnaModel.protestVote(candidateType);
@@ -71,9 +67,25 @@ public class UrnaUniversity extends Urna{
     }
   }
 
-  private Candidate getCandidate(Integer voteNumber){
+  private boolean checkForAbstentionVote(String vote, String candidateType) {
+    printInterface.confirmationMessage("abstenção");
+    int confirm = readInt();
+    if (confirm == protestVote) {
+        urnaModel.NullVote(candidateType);
+        return true;
+    } else {
+        return false;
+    }
+  }
 
-    DepartmentHead candidate = urnaModel.getUniversityCandidateByNumber(voteNumber);
+  private Candidate getCandidate(String candidateType, Integer voteNumber){
+
+    UniversityCandidate candidate;
+
+    if (candidateType == "DepartmentHead")
+      candidate = urnaModel.getDepartmentHeadByNumber(voteNumber);
+    else if (candidateType == "Chancellor")
+      candidate = urnaModel.getChancellorByNumber(voteNumber);
     
     if(candidate == null){
           throw new Warning("Candidato não encontrado");
@@ -82,17 +94,20 @@ public class UrnaUniversity extends Urna{
     return candidate;
   }
 
-  protected boolean voteForCandidate(Voter voter, String key, String candidateType){
+  protected boolean voteForCandidate(Voter voter, String candidatePosition, String candidateType){
     try{
-    printInterface.askForCandidateNumber(key);
+    printInterface.askForCandidateNumber(candidatePosition);
     String vote = readString();
 
-    if (vote.equals("br")||vote.equals("abs"))
-       return checkForProtestVote(vote, candidateType);
+    if (vote.equals("br"))
+      return checkForProtestVote(vote, candidateType);
+    
+    if (vote.equals("abs"))
+      return checkForAbstentionVote(vote, candidateType);
     
     int voteNumber = Integer.parseInt(vote);
 
-    Candidate candidate = getCandidate(voteNumber);
+    Candidate candidate = getCandidate(candidateType, voteNumber);
 
     printInterface.confirmationCandidate(candidate.name, candidate.party);
     

@@ -1,6 +1,7 @@
 package urna;
 
 import java.util.Map;
+
 import java.util.List;
 import java.util.ArrayList;
 
@@ -36,7 +37,8 @@ public class UrnaBackend {
     // #endif
 
     // #if University
-//@    currentElection.addElection("Chefe de Departamento", new UniversityElection(electionPassword));
+//@    currentElection.addElection("DepartamentHead", new UniversityElection("Chefe de Departamento", electionPassword));
+//@    currentElection.addElection("Chancellor", new UniversityElection("Reitor", electionPassword));
     // #endif
 
     UrnaDatabase.loadCandidates(currentElection, electionPassword);
@@ -93,10 +95,13 @@ public class UrnaBackend {
 
   // UNIVERSITY
 
-  public DepartmentHead getUniversityCandidateByNumber(int voteNumber) {
-    return (DepartmentHead) currentElection.get("Chefe de Departamento").getCandidateByNumber(Integer.toString(voteNumber));
+  public UniversityCandidate getDepartmentHeadByNumber(int voteNumber) {
+    return (UniversityCandidate) currentElection.get("DepartmentHead").getCandidateByNumber(Integer.toString(voteNumber));
   }
 
+  public UniversityCandidate getChancellorByNumber(int voteNumber) {
+    return (UniversityCandidate) currentElection.get("Chancellor").getCandidateByNumber(Integer.toString(voteNumber));
+  }
 
   
   public Voter getVoter() {

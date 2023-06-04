@@ -109,6 +109,13 @@ public class Voter {
     }
   }
 
+  public int getVoteWeight() {
+    if (universityJob == "professor")
+      return 2;
+    else
+      return 1;
+  }
+
   public String getElectoralCard() {
 	return electoralCard;
   }
