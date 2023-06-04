@@ -5,14 +5,14 @@
 	<feature automatic="selected" name="Exibicao"/>
 	<feature automatic="selected" name="ExibirEleitos"/>
 	<feature automatic="selected" name="ExibirVotosNominais"/>
-	<feature manual="selected" name="ExibirDerrotados"/>
-	<feature manual="selected" name="EstatisticasDinamicas"/>
-	<feature manual="selected" name="SegundoTurno"/>
+	<feature name="ExibirDerrotados"/>
+	<feature name="EstatisticasDinamicas"/>
+	<feature name="SegundoTurno"/>
 	<feature automatic="selected" name="TipoDeEleicao"/>
-	<feature manual="selected" name="Federal"/>
+	<feature automatic="unselected" name="Federal"/>
 	<feature automatic="unselected" name="Municipal"/>
 	<feature automatic="unselected" name="RealityShow"/>
-	<feature automatic="unselected" name="Universidade"/>
+	<feature manual="selected" name="Universidade"/>
 	<feature automatic="selected" name="Votacao"/>
 	<feature automatic="selected" name="ConfirmarVoto"/>
 	<feature automatic="selected" name="CorrigirVoto"/>

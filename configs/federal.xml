@@ -6,7 +6,7 @@
 	<feature automatic="selected" name="ExibirEleitos"/>
 	<feature automatic="selected" name="ExibirVotosNominais"/>
 	<feature manual="selected" name="ExibirDerrotados"/>
-	<feature manual="selected" name="EstatisticasDinamicas"/>
+	<feature name="EstatisticasDinamicas"/>
 	<feature manual="selected" name="SegundoTurno"/>
 	<feature automatic="selected" name="TipoDeEleicao"/>
 	<feature manual="selected" name="Federal"/>
