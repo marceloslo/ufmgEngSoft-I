@@ -183,7 +183,7 @@ public class UrnaFederal extends Urna{
       		urnaModel.addCandidate(tseProfessional, federalDeputyCandidate, password);
       	case 3:
       		StateDeputy stateDeputyCandidate = new StateDeputy.Builder().name(name).number(number).party(party).state(state).build();
-      		urnaModel.addCandidate(tseProfessional, federalDeputyCandidate, password);
+      		urnaModel.addCandidate(tseProfessional, stateDeputyCandidate, password);
       	case 4:
       		Senator senatorCandidate = new Senator.Builder().name(name).number(number).party(party).state(state).build();
       		urnaModel.addCandidate(tseProfessional, senatorCandidate, password);
