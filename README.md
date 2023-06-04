@@ -6,8 +6,6 @@
 
 # Como executar o projeto?
 
-Claro! Aqui está uma descrição dos processos atualizados:
-
 ## Primeiro Passo: Instalação do Eclipse
 1. Faça o download do Eclipse, que é uma plataforma de desenvolvimento integrado (IDE) amplamente utilizada. O repositório da IDE pode ser encontrado em: https://www.eclipse.org/downloads/
 2. Execute o instalador do Eclipse e siga as instruções fornecidas para concluir a instalação.
