@@ -37,7 +37,7 @@ public class UrnaDatabase {
         String data = myReader.nextLine();
         var voterData = data.split(",");
         voterMap.put(voterData[0],
-          new Voter.Builder().electoralCard(voterData[0]).name(voterData[1]).state(voterData[2]).district(voterData[3]).nationality(voterData[4]).build());
+          new Voter.Builder().electoralCard(voterData[0]).name(voterData[1]).state(voterData[2]).district(voterData[3]).nationality(voterData[4]).universityJob(voterData[5]).build());
       }
       myReader.close();
     } catch (Exception e) {
@@ -103,6 +103,11 @@ public class UrnaDatabase {
     // #if RealityShow
 //@    RealityCandidate realityCandidate1 = new RealityCandidate.Builder().name("Babu").number(555).party("BBB").nationality("Brasil").build();
 //@    currentElection.get("Participante Reality").addCandidate((Candidate)realityCandidate1, electionPassword);
+    // #endif
+
+    // #if University
+//@    UniversityCandidate universityCandidate1 = new UniversityCandidate.Builder().name("Loureiro").number(09876543267).party("DCC").nationality("Brasil").build();
+//@    currentElection.get("Chefe de Departamento").addCandidate((Candidate)universityCandidate1, electionPassword);
     // #endif
 
   }

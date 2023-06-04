@@ -36,7 +36,7 @@ public class UrnaBackend {
     // #endif
 
     // #if University
-//@    currentElection.addElection("UniversityCandidate", new UniversityElection(electionPassword));
+//@    currentElection.addElection("Chefe de Departamento", new UniversityElection(electionPassword));
     // #endif
 
     UrnaDatabase.loadCandidates(currentElection, electionPassword);
@@ -93,8 +93,8 @@ public class UrnaBackend {
 
   // UNIVERSITY
 
-  public DepartmentHead getUniversityCandidateByNumber(string Department, int voteNumber) {
-    return (DepartmentHead) currentElection.get("UniversityCandidate").getCandidateByNumber(Department+Integer.toString(voteNumber));
+  public DepartmentHead getUniversityCandidateByNumber(int voteNumber) {
+    return (DepartmentHead) currentElection.get("Chefe de Departamento").getCandidateByNumber(Integer.toString(voteNumber));
   }
 
 

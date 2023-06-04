@@ -7,7 +7,10 @@ public class Voter {
   protected final String state;
 
   protected final String nationality;
+  
   protected final String district;
+
+  protected final String universityJob;
 
   public static class Builder {
     private String identification;
@@ -15,6 +18,7 @@ public class Voter {
     private String state;
     private String nationality;
     private String district;
+    private String universityJob;
 
     public Builder electoralCard(String electoralCard) {
       this.identification = electoralCard;
@@ -41,6 +45,12 @@ public class Voter {
       return this;      
       
     }
+
+    public Builder universityJob(String universityJob) {
+      this.universityJob = universityJob;
+      return this;
+    }
+
     public Voter build() {
       if (identification == null)
         throw new IllegalArgumentException("electoralCard mustn't be null");
@@ -60,16 +70,17 @@ public class Voter {
       if (state.isEmpty())
         throw new IllegalArgumentException("state mustn't be empty");
 
-      return new Voter(identification, name, state, district, nationality);
+      return new Voter(identification, name, state, district, nationality, universityJob);
     }
   }
 
-  protected Voter(String electoralCard, String name, String state, String district, String nationality) {
+  protected Voter(String electoralCard, String name, String state, String district, String nationality, String universityJob) {
     this.electoralCard = electoralCard;
     this.name = name;
     this.state = state;
     this.district = district;
     this.nationality = nationality;
+    this.universityJob = universityJob;
   }
 
   public void vote(String number, MultipleElections election, String type, Boolean isProtestVote, Boolean isNullVote) {
@@ -117,4 +128,8 @@ public class Voter {
   public String getNationality() {
   return nationality;
   }
+
+  public String getUniversityJob() {
+    return universityJob;
+    }
 }
