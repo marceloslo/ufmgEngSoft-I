@@ -3,6 +3,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import urna.FederalLegislativeCandidate;
+
 public class UrnaFederal extends Urna{
 
     private static int protestVote = 1;
@@ -153,13 +155,80 @@ public class UrnaFederal extends Urna{
   }
 
   protected void addCandidate(TSEEmployee tseProfessional) {
-    // Implementar
-    }
-
-
-
+  	  printInterface.askForPassword();
+  	  String password = readString();
+  	  
+  	  printInterface.print("1 - Adicionar Presidente");
+  	  printInterface.print("2 - Adicionar Deputado Federal");
+  	  printInterface.print("3 - Adicionar Deputado Estadual");
+  	  printInterface.print("4 - Adicionar Senador");
+  	  printInterface.print("5 - Adicionar Governador");
+  	  int opt = readInt();
+  	  
+      printInterface.print("Digite o nome do candidato: ");
+      String name = readString();
+      printInterface.print("Digite o número do candidato: ");
+      int number = readInt();
+      printInterface.print("Digite o partido do candidato: ");
+      String party = readString();
+      printInterface.print("Digite a estado do candidato: ");
+      String state = readString();
+      
+      switch (opt) {
+      	case 1: 
+      		President presidentCandidate = new President.Builder().name(name).number(number).party(party).build();
+      		urnaModel.addCandidate(tseProfessional, presidentCandidate, password);
+      	case 2:
+      		FederalDeputy federalDeputyCandidate = new FederalDeputy.Builder().name(name).number(number).party(party).state(state).build();
+      		urnaModel.addCandidate(tseProfessional, federalDeputyCandidate, password);
+      	case 3:
+      		StateDeputy stateDeputyCandidate = new StateDeputy.Builder().name(name).number(number).party(party).state(state).build();
+      		urnaModel.addCandidate(tseProfessional, federalDeputyCandidate, password);
+      	case 4:
+      		Senator senatorCandidate = new Senator.Builder().name(name).number(number).party(party).state(state).build();
+      		urnaModel.addCandidate(tseProfessional, senatorCandidate, password);
+      	case 5:
+      		Governor governorCandidate = new Governor.Builder().name(name).number(number).party(party).state(state).build();
+      		urnaModel.addCandidate(tseProfessional, governorCandidate, password);
+      	default:
+      		printInterface.invalidCommand();
+      }
+  }
 
   protected void removeCandidate(TSEEmployee tseProfessional) {
-    // Implementar
-    }
+	  printInterface.askForPassword();
+	  String password = readString();
+	  
+  	  printInterface.print("1 - Remover Presidente");
+  	  printInterface.print("2 - Remover Deputado Federal");
+  	  printInterface.print("3 - Remover Deputado Estadual");
+  	  printInterface.print("4 - Remover Senador");
+  	  printInterface.print("5 - Remover Governador");
+  	  int opt = readInt();
+	  
+	  printInterface.print("Digite o estado do candidato: ");
+	  String state = readString();
+      printInterface.print("Digite o número do candidato: ");
+      int number = readInt();
+      
+      switch (opt) {
+    	case 1: 
+    		President presidentCandidate = urnaModel.getPresidentByNumber(number);
+    		urnaModel.removeCandidate(tseProfessional, presidentCandidate, password);
+    	case 2:
+    		FederalDeputy federalDeputyCandidate = urnaModel.getFederalDeputyByNumber(state, number);
+    		urnaModel.removeCandidate(tseProfessional, federalDeputyCandidate, password);
+    	case 3:
+      		StateDeputy stateDeputyCandidate = urnaModel.getStateDeputyByNumber(state, number);
+    		urnaModel.removeCandidate(tseProfessional, stateDeputyCandidate, password);
+    	case 4:
+    		Senator senatorCandidate = urnaModel.getSenatorByNumber(state, number);
+    		urnaModel.removeCandidate(tseProfessional, senatorCandidate, password);
+    	case 5:
+    		Governor governorCandidate = urnaModel.getGovernorByNumber(state, number);
+    		urnaModel.removeCandidate(tseProfessional, governorCandidate, password);
+    	default:
+    		printInterface.invalidCommand();
+      }
+  }
 }

@@ -136,11 +136,57 @@ public class UrnaDistrital extends Urna{
       }
     
       protected void addCandidate(TSEEmployee tseProfessional) {
-        // Implementar
+      	  printInterface.askForPassword();
+      	  String password = readString();
+      	  
+      	  printInterface.print("1 - Adicionar Prefeito(a)");
+      	  printInterface.print("2 - Adicionar Vereador(a)");
+      	  int opt = readInt();
+      	  
+          printInterface.print("Digite o nome do candidato: ");
+          String name = readString();
+          printInterface.print("Digite o número do candidato: ");
+          int number = readInt();
+          printInterface.print("Digite o partido do candidato: ");
+          String party = readString();
+          printInterface.print("Digite o distrito do candidato: ");
+          String district = readString();
+          
+          switch (opt) {
+          	case 1: 
+          		Mayor mayorCandidate = new Mayor.Builder().name(name).number(number).party(party).district(district).build();
+          		urnaModel.addCandidate(tseProfessional, mayorCandidate, password);
+          	case 2:
+          		CityCouncilor cityCouncilorCandidate = new CityCouncilor.Builder().name(name).number(number).party(party).district(district).build();
+          		urnaModel.addCandidate(tseProfessional, cityCouncilorCandidate, password);
+          	default:
+          		printInterface.invalidCommand();
+          }
       }
 
       protected void removeCandidate(TSEEmployee tseProfessional) {
-        // Implementar
-    }
+    	  printInterface.askForPassword();
+    	  String password = readString();
+    	  
+      	  printInterface.print("1 - Remover Prefeito(a)");
+      	  printInterface.print("2 - Remover Vereador(a)");
+      	  int opt = readInt();
+    	  
+    	  printInterface.print("Digite o distrito do candidato: ");
+    	  String district = readString();
+          printInterface.print("Digite o número do candidato: ");
+          int number = readInt();
+          
+          switch (opt) {
+        	case 1: 
+        		Mayor mayorCandidate = urnaModel.getMayorByNumber(district, number);
+        		urnaModel.removeCandidate(tseProfessional, mayorCandidate, password);
+        	case 2:
+        		CityCouncilor cityCouncilorCandidate = urnaModel.getCityCouncilorByNumber(district, number);
+        		urnaModel.removeCandidate(tseProfessional, cityCouncilorCandidate, password);
+        	default:
+        		printInterface.invalidCommand();
+          }
+      }
     
 }
