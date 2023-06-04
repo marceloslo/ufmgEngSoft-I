@@ -68,7 +68,7 @@ public class UrnaUniversity extends Urna{
 
   private Candidate getCandidate(Voter voter, String key, Integer voteNumber){
 
-    DepartmentHead candidate = urnaModel.getDepartmentHeadByNumber(voteNumber);
+    DepartmentHead candidate = urnaModel.getUniversityCandidateByNumber(voter.department, voteNumber);
     
     if(candidate == null){
           throw new Warning("Candidato não encontrado");
