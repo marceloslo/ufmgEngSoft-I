@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<featureModel>
+	<properties>
+		<graphics key="autolayoutconstraints" value="false"/>
+		<graphics key="legendautolayout" value="true"/>
+		<graphics key="showconstraints" value="true"/>
+		<graphics key="showshortnames" value="false"/>
+		<graphics key="layout" value="horizontal"/>
+		<graphics key="showcollapsedconstraints" value="true"/>
+		<graphics key="legendhidden" value="false"/>
+		<graphics key="layoutalgorithm" value="1"/>
+	</properties>
+	<struct>
+		<and abstract="true" mandatory="true" name="Urna">
+			<graphics key="collapsed" value="false"/>
+			<and abstract="true" mandatory="true" name="Eleicao">
+				<and mandatory="true" name="Exibicao">
+					<feature mandatory="true" name="ExibirEleitos"/>
+					<feature mandatory="true" name="ExibirVotosNominais"/>
+					<feature name="ExibirDerrotados"/>
+					<feature name="EstatisticasDinamicas"/>
+				</and>
+				<feature name="SegundoTurno"/>
+				<alt abstract="true" mandatory="true" name="TipoDeEleicao">
+					<feature name="Federal"/>
+					<feature name="Municipal"/>
+					<feature name="RealityShow"/>
+					<feature name="Universidade"/>
+				</alt>
+				<and abstract="true" mandatory="true" name="Votacao">
+					<feature mandatory="true" name="ConfirmarVoto"/>
+					<feature mandatory="true" name="CorrigirVoto"/>
+					<feature name="Branco"/>
+					<feature name="Nulo"/>
+				</and>
+			</and>
+		</and>
+	</struct>
+</featureModel>
