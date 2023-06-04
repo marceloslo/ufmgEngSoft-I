@@ -74,13 +74,28 @@ public class UrnaTvShow extends Urna{
       }
       }
       protected void addCandidate(TSEEmployee tseProfessional) {
-        // Implementar
+    	printInterface.askForPassword();
+    	String password = readString();
+        printInterface.print("Digite o nome do candidato: ");
+        String name = readString();
+        printInterface.print("Digite o número do candidato: ");
+        int number = readInt();
+        printInterface.print("Digite o partido do candidato: ");
+        String party = readString();
+        printInterface.print("Digite a nacionalidade do candidato: ");
+        String nationality = readString();
+        RealityCandidate auxCandidate = new RealityCandidate.Builder().name(name).number(number).party(party).nationality(nationality).build();
+        urnaModel.addCandidate(tseProfessional, auxCandidate, password);
       }
     
-    
-    
-    
       protected void removeCandidate(TSEEmployee tseProfessional) {
-        // Implementar
+      	  printInterface.askForPassword();
+      	  String password = readString();
+          printInterface.print("Digite a nacionalidade do candidato: ");
+          String nationality = readString();
+          printInterface.print("Digite o número do candidato: ");
+          int number = readInt();
+          Candidate auxCandidate = urnaModel.getRealityCandidateByNumber(nationality, number);
+          urnaModel.removeCandidate(tseProfessional, auxCandidate, password);
     }
 }
