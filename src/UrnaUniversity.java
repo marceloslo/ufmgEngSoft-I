@@ -80,7 +80,7 @@ public class UrnaUniversity extends Urna{
 
   private Candidate getCandidate(String candidateType, Integer voteNumber){
 
-    UniversityCandidate candidate;
+    UniversityCandidate candidate=null;
 
     if (candidateType == "DepartmentHead")
       candidate = urnaModel.getDepartmentHeadByNumber(voteNumber);
