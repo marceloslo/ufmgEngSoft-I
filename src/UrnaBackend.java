@@ -35,6 +35,10 @@ public class UrnaBackend {
 //@    currentElection.addElection("Participante Reality", new PoliticalElection(electionPassword));
     // #endif
 
+    // #if University
+//@    currentElection.addElection("UniversityCandidate", new UniversityElection(electionPassword));
+    // #endif
+
     UrnaDatabase.loadCandidates(currentElection, electionPassword);
   }
 	
@@ -85,6 +89,12 @@ public class UrnaBackend {
 
   public RealityCandidate getRealityCandidateByNumber(String nationality, int voteNumber) {
     return (RealityCandidate) currentElection.get("Participante Reality").getCandidateByNumber(nationality+Integer.toString(voteNumber));
+  }
+
+  // UNIVERSITY
+
+  public DepartmentHead getUniversityCandidateByNumber(string Department, int voteNumber) {
+    return (DepartmentHead) currentElection.get("UniversityCandidate").getCandidateByNumber(Department+Integer.toString(voteNumber));
   }
 
 
