@@ -41,13 +41,8 @@ git clone https://github.com/marceloslo/ufmgEngSoft-I/edit/main/README.md
 2. Execute o projeto no eclipse. 
 
 # Como utilizar o produto
-## Como rodar
 
-- Na root do repositório use o comando `make` para buildar e executar o programa
-
-## Como utilizar
-
-Exemplo: Eleição Federal e Estadual
+Exemplo de teste de uma Eleição Federal e Estadual.
 
 No menu inicial para gerenciar candidatos e eleição siga pela opção 2:
 
