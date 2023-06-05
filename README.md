@@ -36,6 +36,6 @@ git clone https://github.com/marceloslo/ufmgEngSoft-I/edit/main/README.md
 2. Na aba "General"(Geral), clique em "Existing Projects into Workspace"(Projetos existentes para o espaço de trabalho), depois "Browse"(navegar) e selecione a pasta que contém esse projeto.
 3. Digite um nome para o projeto, clique em "Finish" (Concluir).
 
-## Quinto passo: Escolher configuração e executar
+## Quinto passo: Escolher configuração/produto e executar
 1. Clique com o botão direito na configuração desejada. Em "FeatureIde" clique em "Set as current configuration".
 2. Execute o projeto no eclipse. 
