@@ -31,9 +31,11 @@ git clone https://github.com/marceloslo/ufmgEngSoft-I/edit/main/README.md
 ```
 6. Aguarde enquanto o Git clona o repositório para o seu diretório local.
 
-## Quarto passo: Criar um novo projeto com Antenna e copiar os arquivos do GitHub para o package
-1. No Eclipse, vá para "File" (Arquivo) no menu superior e selecione "New" (Novo) e depois "Project" (Projeto).
-2. Selecione "FeatureIDE project" e clique em "Next" (Próximo).
-3. Selecione a opção "Antenna" como Composer e clique em next.
-4. Digite um nome para o projeto, clique em "Finish" (Concluir).
-Continue o tutorial pq eu Não sei mais o que é pra fazer sem ser na brutalité.
+## Quarto passo: Importar o projeto do repositório do github
+1. No Eclipse, vá para "File" (Arquivo) no menu superior e selecione "Import" (importar).
+2. Na aba "General"(Geral), clique em "Existing Projects into Workspace"(Projetos existentes para o espaço de trabalho), depois "Browse"(navegar) e selecione a pasta que contém esse projeto.
+3. Digite um nome para o projeto, clique em "Finish" (Concluir).
+
+## Quinto passo: Escolher configuração e executar
+1. Clique com o botão direito na configuração desejada. Em "FeatureIde" clique em "Set as current configuration".
+2. Execute o projeto no eclipse. 
